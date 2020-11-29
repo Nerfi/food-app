@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import FoodCard from './UI/FoodCard';
 
 function DisplayFoods() {
 
@@ -27,11 +28,10 @@ function DisplayFoods() {
   },[]);
 
 
-
-
   return(
-
-      <p>working from food component {error && error}</p>
+    <div>
+      {foods.map(food => <FoodCard {...food} key={food.id}/>)}
+    </div>
   );
 };
 

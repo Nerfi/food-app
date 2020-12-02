@@ -1,8 +1,15 @@
 #videobackground {
-   position: absolute;
-  right: 0;
-  bottom: 0;
-  top: 60px;
-  min-width: 100%;
-  min-height: 100%;
+
+  width:100%;
+  max-width:1200px;
+   margin:auto;
+   position: relative;
 }
+
+
+.video {
+    width: 100%; /* width needs to be set to 100% */
+    height: auto; /* height needs to be set to 100% */
+
+}
+

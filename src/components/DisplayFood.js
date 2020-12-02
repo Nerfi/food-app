@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import FoodCard from './UI/FoodCard';
+import './DisplayFood.css';
 
 function DisplayFoods() {
 
@@ -12,7 +13,7 @@ function DisplayFoods() {
       const getFoodsResponse = async () => {
 
         const API_SECRET = process.env.REACT_APP_FOOD_KEY;
-        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_SECRET}&number=20`;
+        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_SECRET}&number=21`;
 
         await fetch(url)
         .then(res => res.json())
@@ -29,7 +30,7 @@ function DisplayFoods() {
 
 
   return(
-    <div>
+    <div className="food__cards">
       {foods.map(food => <FoodCard {...food} key={food.id}/>)}
     </div>
   );

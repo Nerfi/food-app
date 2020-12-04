@@ -6,6 +6,7 @@
   padding: 25px;
   width: 80%;
 
+
 }
 
 
@@ -27,6 +28,8 @@
     display: grid;
     grid-template-columns: 1fr;
     margin-left: 40px;
+    background-color: yellow;
+
   }
 }
 
@@ -35,17 +38,19 @@
   .food__cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-left: -10px;
-
+    margin: 20px;
 
   }
 }
 
 /* big landscape tablets, laptops, and desktops */
-@media (max-width: 1025px) {
+@media (max-width: 1024px) {
   .food__cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: 44px;
+    grid-template-columns: 1fr;
+    margin-left: 40px;
+
   }
 }
+
+

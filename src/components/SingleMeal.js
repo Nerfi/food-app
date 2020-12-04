@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import {useRouteMatch} from 'react-router-dom';
 import FoodCard from './UI/FoodCard';
+import './SingleMeal.css';
 
 
 function SingleMeal(props) {
@@ -31,7 +32,11 @@ function SingleMeal(props) {
 
 
   return (
-    <FoodCard {...response}/>
+    <div className="single__meal">
+    {error && error}
+
+      <FoodCard {...response}/>
+    </div>
   )
 };
 

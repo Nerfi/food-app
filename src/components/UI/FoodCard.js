@@ -14,9 +14,6 @@ function FoodCard(props) {
 
   console.log(props, 'props')
 
-  //can not replace <a> tags
-  const replaceBtag = (string) => string.replace(/[<b> </b>  ]/g, ' ');
-
 
   return(
     <Card style={{ width: '18rem' }}>
@@ -32,7 +29,7 @@ function FoodCard(props) {
 
         <p>aqui va la nueva version</p>
 
-        {summary && replaceBtag(summary)}
+        {/*summary && replaceBtag(summary) */}
         </Card.Text>
         <Link to={`meal/${id}`}>
          <Button variant="primary">See Recipe</Button>

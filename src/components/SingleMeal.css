@@ -8,3 +8,44 @@
 }
 
 
+
+
+/* image and title styling */
+
+.single__meal__header {
+  text-align: center;
+  padding: 20px;
+
+}
+
+.single__meal__title {
+  padding: 20px;
+  font-size: 45px;
+  font-weight: bold;
+
+}
+
+/* single meal description styling */
+
+.description__title {
+  font-size: 30px;
+}
+
+.single__meal__description {
+  text-align: center;
+
+}
+
+
+/* single meal tags */
+
+.single__meal__tags{
+  display: flex;
+  border-style: dashed;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  padding: 20px;
+  align-items: center;
+  padding-left: -20px;
+}

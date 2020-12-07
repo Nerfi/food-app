@@ -30,8 +30,6 @@ function SingleMeal(props) {
 
   },[params.id]);
 
-  console.log(response)
-
   //can not replace <a> tags
   const replaceBtag = string => string.replace(/[<b> </b>  ]/g, ' ');
 
@@ -42,17 +40,19 @@ function SingleMeal(props) {
     summary,
     sourceUrl,
     spoonacularScore,
-    analyzedInstructions
+    analyzedInstructions,
+    cuisines,
+    diets,
+    dishTypes,
+    vegan,
+    vegetarian
   } = response;
-
-  //fucntion para ver si podemos hacerlo, not working as expected
-const steps = analyzedInstructions &&  analyzedInstructions[0].steps;
 
 const displaySteps = (array) => {
 
   let newSteps
 
-  newSteps = array.map((step, index) => {
+  newSteps = array && array[0].steps.map((step, index) => {
     return(
        <p>number {index} <li><ul>{step.step}</ul></li>  </p>
     )
@@ -60,26 +60,54 @@ const displaySteps = (array) => {
   })
 
  return newSteps;
-}
+};
+
   return (
     <div className="single__meal">
     {error && error}
 
       <div className="single__meal__header">
         <img src={image} alt="meal"/>
-        <h2>{title}</h2>
+        <h2 className="single__meal__title">{title}</h2>
+      </div>
+
+      <div className="single__meal__tags">
+
+        <div className="single__meal__cuisines">
+         <p> Cuisines:</p>
+          <p>{cuisines &&cuisines.map(c => c + ' ,' )}</p>
+        </div>
+
+          <div className="single__meal__dishType">
+          <p>DishTypes:</p>
+          <p>{dishTypes && dishTypes.map(d => <p>{d}</p>)}</p>
+          </div>
+          <div className="single__meal__score">
+           <p>Score:</p>
+           <p>{spoonacularScore}  out of 100</p>
+          </div>
+
+          <div className="single__meal__diets">
+           <p onClick={(e) => alert('working' + e.target.value)} >Diets:</p>
+           <p>{diets && diets.map(d =><p>{d}</p>)}</p>
+          </div>
+
+      </div>
+
+      <div className="single__meal__description">
+      <strong className="description__title">Description</strong>:
+        <p> {summary && replaceBtag(summary)}</p>
       </div>
 
       <div className="single__meal__body">
 
-        <p> <strong>Description</strong>: {summary &&replaceBtag(summary)}</p>
         <p>you can chech the originla recipe here {sourceUrl}</p>
-        <p>score:{spoonacularScore}</p>
+        <p> vegan ?{vegan ? 'true': 'false'}</p>
+        <p>vegetarian {vegetarian ? 'true' : 'false'}</p>
       </div>
 
       <div className="single__meal__steps">
 
-       <strong>steps</strong> { analyzedInstructions && analyzedInstructions[0].steps.map((step, index) =>  <p>number {index} <li><ul>{step.step}</ul></li>  </p>)}
        <p>{analyzedInstructions && displaySteps(analyzedInstructions)}</p>
 
       </div>

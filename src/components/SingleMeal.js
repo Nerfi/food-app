@@ -8,6 +8,9 @@ function SingleMeal(props) {
 
   const [response, setResponse] = useState({});
   const [error, setError] = useState(null);
+  const [value, setValue] = useState('');
+
+  console.log(value)
 
   let {params} = useRouteMatch();
   //secrete key
@@ -48,6 +51,7 @@ function SingleMeal(props) {
     vegetarian
   } = response;
 
+//working but make sure to improve it later on
 const displaySteps = (array) => {
 
   let newSteps
@@ -75,6 +79,8 @@ const displaySteps = (array) => {
 
         <div className="single__meal__cuisines">
          <p> Cuisines:</p>
+
+
           <p>{cuisines &&cuisines.map(c => c + ' ,' )}</p>
         </div>
 
@@ -87,8 +93,8 @@ const displaySteps = (array) => {
            <p>{spoonacularScore}  out of 100</p>
           </div>
 
-          <div className="single__meal__diets">
-           <p onClick={(e) => alert('working' + e.target.value)} >Diets:</p>
+          <div className="single__meal__diets" onChange={(e) => setValue(e.target.value)}>
+           <p onClick={(e) => alert('working' + value)} >Diets:</p>
            <p>{diets && diets.map(d =><p>{d}</p>)}</p>
           </div>
 
@@ -101,9 +107,12 @@ const displaySteps = (array) => {
 
       <div className="single__meal__body">
 
-        <p>you can chech the originla recipe here {sourceUrl}</p>
-        <p> vegan ?{vegan ? 'true': 'false'}</p>
-        <p>vegetarian {vegetarian ? 'true' : 'false'}</p>
+           <p>You can find the Original recipe here: {sourceUrl}</p>
+
+
+            <p> vegan <br/>{vegan ? 'true': 'false'}</p>
+
+        <p>vegetarian <br/>{vegetarian ? 'true' : 'false'}</p>
       </div>
 
       <div className="single__meal__steps">

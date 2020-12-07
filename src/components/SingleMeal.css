@@ -49,3 +49,12 @@
   align-items: center;
   padding-left: -20px;
 }
+
+
+.single__meal__body {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  text-align: center;
+}
+

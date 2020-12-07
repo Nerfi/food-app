@@ -8,9 +8,7 @@ function SingleMeal(props) {
 
   const [response, setResponse] = useState({});
   const [error, setError] = useState(null);
-  const [value, setValue] = useState('');
 
-  console.log(value)
 
   let {params} = useRouteMatch();
   //secrete key
@@ -52,19 +50,10 @@ function SingleMeal(props) {
   } = response;
 
 //working but make sure to improve it later on
-const displaySteps = (array) => {
+const displaySteps = (array) =>  array && array[0].steps.map((step, index) => <ul key={index}><li>{step.step}</li></ul>)
 
-  let newSteps
-
-  newSteps = array && array[0].steps.map((step, index) => {
-    return(
-       <p>number {index} <li><ul>{step.step}</ul></li>  </p>
-    )
-
-  })
-
- return newSteps;
-};
+//function in order to display the tags of each meal
+const tagsOfMeal = array => array.map(tag => <div className="meal__tag">{tag}</div>)
 
   return (
     <div className="single__meal">
@@ -80,21 +69,24 @@ const displaySteps = (array) => {
         <div className="single__meal__cuisines">
          <p> Cuisines:</p>
 
-
-          <p>{cuisines &&cuisines.map(c => c + ' ,' )}</p>
+         <div className="cousine">
+          {cuisines && tagsOfMeal(cuisines)}
+         </div>
         </div>
 
           <div className="single__meal__dishType">
           <p>DishTypes:</p>
-          <p>{dishTypes && dishTypes.map(d => <p>{d}</p>)}</p>
+            <div className="dish">
+            <p>{dishTypes && dishTypes.map(d => <p>{d}</p>)}</p>
+            </div>
           </div>
           <div className="single__meal__score">
            <p>Score:</p>
            <p>{spoonacularScore}  out of 100</p>
           </div>
 
-          <div className="single__meal__diets" onChange={(e) => setValue(e.target.value)}>
-           <p onClick={(e) => alert('working' + value)} >Diets:</p>
+          <div className="single__meal__diets">
+           <p>Diets:</p>
            <p>{diets && diets.map(d =><p>{d}</p>)}</p>
           </div>
 
@@ -102,22 +94,25 @@ const displaySteps = (array) => {
 
       <div className="single__meal__description">
       <strong className="description__title">Description</strong>:
-        <p> {summary && replaceBtag(summary)}</p>
+         {summary && replaceBtag(summary)}
       </div>
 
       <div className="single__meal__body">
 
            <p>You can find the Original recipe here: {sourceUrl}</p>
 
+           <div className="vegan">
+              <p> vegan <br/>{vegan ? 'true': 'false'}</p>
 
-            <p> vegan <br/>{vegan ? 'true': 'false'}</p>
+          <p>vegetarian <br/>{vegetarian ? 'true' : 'false'}</p>
+           </div>
 
-        <p>vegetarian <br/>{vegetarian ? 'true' : 'false'}</p>
+
       </div>
 
       <div className="single__meal__steps">
 
-       <p>{analyzedInstructions && displaySteps(analyzedInstructions)}</p>
+       {analyzedInstructions && displaySteps(analyzedInstructions)}
 
       </div>
 

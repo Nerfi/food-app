@@ -31,7 +31,7 @@ function DisplayFoods() {
 
   return(
     <div className="food__cards">
-      {foods.map(food => <FoodCard {...food} key={food.id}/>)}
+      {foods?.map(food => <FoodCard {...food} key={food.id}/>)}
     </div>
   );
 };

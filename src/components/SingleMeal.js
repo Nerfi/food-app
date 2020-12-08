@@ -31,9 +31,6 @@ function SingleMeal(props) {
 
   },[params.id]);
 
-  //can not replace <a> tags
-  const replaceBtag = string => string.replace(/[<b> </b>  ]/g, ' ');
-
   //deconstructing the object response
   const {
     image,
@@ -49,11 +46,14 @@ function SingleMeal(props) {
     vegetarian
   } = response;
 
+  //can not replace <a> tags
+  const replaceBtag = string => string.replace(/[<b> </b>  ]/g, ' ');
+
 //working but make sure to improve it later on
-const displaySteps = (array) =>  array && array[0].steps.map((step, index) => <ul key={index}><li>{step.step}</li></ul>)
+const displaySteps = (array) =>  array && array[0].steps.map((step, index) => <ul key={index}><li>{step.step}</li></ul>);
 
 //function in order to display the tags of each meal
-const tagsOfMeal = array => array.map(tag => <div className="meal__tag">{tag}</div>)
+const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</div>);
 
   return (
     <div className="single__meal">
@@ -72,22 +72,29 @@ const tagsOfMeal = array => array.map(tag => <div className="meal__tag">{tag}</d
          <div className="cousine">
           {cuisines && tagsOfMeal(cuisines)}
          </div>
+
         </div>
 
           <div className="single__meal__dishType">
-          <p>DishTypes:</p>
+            <p>DishTypes:</p>
+
             <div className="dish">
-            <p>{dishTypes && dishTypes.map(d => <p>{d}</p>)}</p>
+            {dishTypes && tagsOfMeal(dishTypes)}
             </div>
+
           </div>
           <div className="single__meal__score">
            <p>Score:</p>
-           <p>{spoonacularScore}  out of 100</p>
+             <div className="score">
+             <p>{spoonacularScore}  out of 100</p>
+             </div>
           </div>
 
           <div className="single__meal__diets">
            <p>Diets:</p>
-           <p>{diets && diets.map(d =><p>{d}</p>)}</p>
+           <div className="diets">
+             {diets && tagsOfMeal(diets)}
+           </div>
           </div>
 
       </div>
@@ -104,7 +111,7 @@ const tagsOfMeal = array => array.map(tag => <div className="meal__tag">{tag}</d
            <div className="vegan">
               <p> vegan <br/>{vegan ? 'true': 'false'}</p>
 
-          <p>vegetarian <br/>{vegetarian ? 'true' : 'false'}</p>
+            <p>vegetarian <br/>{vegetarian ? 'true' : 'false'}</p>
            </div>
 
 

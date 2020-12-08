@@ -1,5 +1,4 @@
 import React from 'react';
-
 import video from './video/video.mp4';
 import './Home.css';
 import DisplayFood from '../DisplayFood';
@@ -7,7 +6,6 @@ import DisplayFood from '../DisplayFood';
 
 
 function Home(props){
-  console.log(props, 'home props from react-router-dom')
 
   return(
     <div>

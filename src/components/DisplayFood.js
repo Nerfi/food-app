@@ -19,8 +19,6 @@ function DisplayFoods() {
         .then(res => res.json())
         .then(res => setFoods(res.results))
         .catch(err =>  setError(err.message))
-
-
       };
 
       //calling the function

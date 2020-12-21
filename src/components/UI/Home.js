@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import DisplayFood from '../DisplayFood';
+import AboutUs from './AboutUs';
 
 
 function Home(props){
@@ -9,11 +10,8 @@ function Home(props){
     <div>
       <div className="maingDivHome">
       </div>
-        <div>
-          <p>aqui deberia ir la parte de about us ! en un separate componetn</p>
-        </div>
-        <DisplayFood/>
-
+      <AboutUs/>
+      <DisplayFood/>
     </div>
   );
 };

@@ -26,9 +26,6 @@ function FoodCard(props) {
 
         <Card.Text>
         {summary && summary}
-
-        <p>aqui va la nueva version</p>
-
         {/*summary && replaceBtag(summary) */}
         </Card.Text>
         <Link to={`meal/${id}`}>

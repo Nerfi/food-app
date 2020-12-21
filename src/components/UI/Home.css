@@ -1,15 +1,8 @@
-#videobackground {
-
-  width:100%;
-  max-width:1200px;
-   margin:auto;
-   position: relative;
-}
-
-
-.video {
-    width: 100%; /* width needs to be set to 100% */
-    height: auto; /* height needs to be set to 100% */
+.maingDivHome {
+  height: 100vh;
+  background-image: url("../../foodBackground.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
 
 }
 

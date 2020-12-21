@@ -27,7 +27,7 @@ function SingleMeal(props) {
     }
 
     //calling the function
-    fetchSingleMeal();
+    //fetchSingleMeal();
 
   },[params.id]);
 
@@ -50,7 +50,7 @@ function SingleMeal(props) {
   const replaceBtag = string => string.replace(/[<b> </b>  ]/g, ' ');
 
 //working but make sure to improve it later on
-const displaySteps = (array) =>  array && array[0].steps.map((step, index) => <ul key={index}><li>{step.step}</li></ul>);
+const displaySteps = (array) =>  array && array[0].steps.map((step, index) => <ul><li key={index}>{step.step}</li></ul>);
 
 //function in order to display the tags of each meal
 const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</div>);
@@ -113,14 +113,10 @@ const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</
 
             <p>vegetarian <br/>{vegetarian ? 'true' : 'false'}</p>
            </div>
-
-
       </div>
 
       <div className="single__meal__steps">
-
        {analyzedInstructions && displaySteps(analyzedInstructions)}
-
       </div>
 
     </div>

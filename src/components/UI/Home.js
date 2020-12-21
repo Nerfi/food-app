@@ -1,30 +1,20 @@
 import React from 'react';
-import video from './video/video.mp4';
 import './Home.css';
 import DisplayFood from '../DisplayFood';
-
 
 
 function Home(props){
 
   return(
     <div>
-     <div id="videobackground">
-
-      <video className="video"
-      autoPlay
-      loop
-       muted
-       src={video}
-      type="video/mp4">
-     </video>
-
-     </div>
-
-      <DisplayFood/>
+      <div className="maingDivHome">
+      </div>
+        <div>
+          <p>aqui deberia ir la parte de about us ! en un separate componetn</p>
+        </div>
+        <DisplayFood/>
 
     </div>
-
   );
 };
 

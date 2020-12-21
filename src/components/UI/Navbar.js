@@ -3,7 +3,7 @@ import {Navbar} from 'react-bootstrap';
 
 function NavbarFood() {
   return(
-    <Navbar style={{zIndex: 1 }}>
+    <Navbar style={{zIndex: 1 }} fixed="top" bg="light">
   <Navbar.Brand href="/">Navbar with text</Navbar.Brand>
   <Navbar.Toggle />
   <Navbar.Collapse className="justify-content-end">

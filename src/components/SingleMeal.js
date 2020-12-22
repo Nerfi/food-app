@@ -27,7 +27,7 @@ function SingleMeal(props) {
     }
 
     //calling the function
-    fetchSingleMeal();
+    //fetchSingleMeal();
 
   },[params.id]);
 
@@ -43,16 +43,14 @@ function SingleMeal(props) {
     diets,
     dishTypes,
     vegan,
-    vegetarian
+    vegetarian,
+    extendedIngredients
   } = response;
 
-  console.log(response, 'response');
+  //esto son los pasos a seguir in order to prepare the plate it's an array of objects
+  console.log(extendedIngredients)
 
-  //can not replace <a> tags
-  //const replaceBtag = string => string.replace(/[<b> </b>  ]/g, ' ');
-  //const replaceBtag = string => string.replace(/<br\s*\/?>/gi,' ')
-  //const replaceBtag = string => string.replace(/<\/?b>/gm)
-///replacing anchor
+///replacing html tags
 const replaceBtag = string => string.replace(/<.*?>/g, '')
 
 //working but make sure to improve it later on
@@ -65,9 +63,9 @@ const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</
     <div className="single__meal">
     {error && error}
 
-      <div className="single__meal__header">
-        <img src={image} alt="meal"/>
+      <div className="single__meal__header" style={{backgroundImage: 'url('+image+')',  backgroundSize: "cover", height: "100vh"}}>
         <h2 className="single__meal__title">{title}</h2>
+
       </div>
 
       <div className="single__meal__tags">
@@ -106,17 +104,23 @@ const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</
       </div>
 
       <div className="single__meal__description">
-      <strong className="description__title">Description</strong>:
+      <div className="descriptionTitle">
+       <strong className="description__title">Description</strong>:
+      </div>
          {summary && replaceBtag(summary)}
       </div>
 
       <div className="single__meal__body">
 
-           <p>You can find the Original recipe here: {sourceUrl}</p>
+           <p>You can find the Original recipe here: </p>
+           <div className="sourceUrl">
+            {sourceUrl}
+           </div>
 
            <div className="vegan">
               <p> vegan <br/>{vegan ? 'true': 'false'}</p>
-
+           </div>
+           <div className="vegetarian">
             <p>vegetarian <br/>{vegetarian ? 'true' : 'false'}</p>
            </div>
       </div>

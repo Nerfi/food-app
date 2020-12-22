@@ -1,7 +1,6 @@
 .single__meal {
-
   margin: auto;
-  width: 60%;
+  width: 70%;
   padding: 10px;
   align-content: center;
   border: 5px solid #FFFF00;
@@ -33,7 +32,6 @@
 
 .single__meal__description {
   text-align: center;
-
 }
 
 
@@ -41,9 +39,8 @@
 
 .single__meal__tags{
   display: flex;
-  border-style: dashed;
   text-align: center;
-  justify-content: center;
+  justify-content: space-around;
   margin: auto;
   padding: 20px;
   align-items: center;
@@ -53,11 +50,8 @@
 
 .single__meal__body {
   display: flex;
-  justify-content: center;
-  width: 70%;
   text-align: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.vegan {
-
-}

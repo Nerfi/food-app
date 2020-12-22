@@ -22,15 +22,20 @@ function DisplayFoods() {
       };
 
       //calling the function
-      //getFoodsResponse();
+      getFoodsResponse();
 
   },[]);
 
 
   return(
-    <div className="food__cards">
+    <>
+    <div className="menu__title">
+     <h2>Our <span>M</span>enu</h2>
+    </div>
+    <div className="food__cards" id="menu">
       {foods?.map(food => <FoodCard {...food} key={food.id}/>)}
     </div>
+    </>
   );
 };
 

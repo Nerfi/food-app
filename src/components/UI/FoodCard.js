@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Button} from 'react-bootstrap';
-import {Link, useParams} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function FoodCard(props) {
 
@@ -16,7 +16,7 @@ function FoodCard(props) {
 
 
   return(
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
       <Card.Img variant="top" src={image} />
       <Card.Body>
 
@@ -26,7 +26,6 @@ function FoodCard(props) {
 
         <Card.Text>
         {summary && summary}
-        {/*summary && replaceBtag(summary) */}
         </Card.Text>
         <Link to={`meal/${id}`}>
          <Button variant="primary">See Recipe</Button>

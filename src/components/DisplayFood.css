@@ -9,6 +9,13 @@
 
 }
 
+.menu__title {
+  align-content: center;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+}
+
 
 /*media query */
 @media  (max-width:541px) {

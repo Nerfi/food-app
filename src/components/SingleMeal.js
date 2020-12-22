@@ -27,7 +27,7 @@ function SingleMeal(props) {
     }
 
     //calling the function
-    //fetchSingleMeal();
+    fetchSingleMeal();
 
   },[params.id]);
 
@@ -49,7 +49,11 @@ function SingleMeal(props) {
   console.log(response, 'response');
 
   //can not replace <a> tags
-  const replaceBtag = string => string.replace(/[<b> </b>  ]/g, ' ');
+  //const replaceBtag = string => string.replace(/[<b> </b>  ]/g, ' ');
+  //const replaceBtag = string => string.replace(/<br\s*\/?>/gi,' ')
+  //const replaceBtag = string => string.replace(/<\/?b>/gm)
+///replacing anchor
+const replaceBtag = string => string.replace(/<.*?>/g, '')
 
 //working but make sure to improve it later on
 const displaySteps = (array) =>  array && array[0].steps.map((step, index) => <ul><li key={index}>{step.step}</li></ul>);
@@ -126,3 +130,6 @@ const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</
 };
 
 export default SingleMeal;
+
+
+

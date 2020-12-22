@@ -46,6 +46,8 @@ function SingleMeal(props) {
     vegetarian
   } = response;
 
+  console.log(response, 'response');
+
   //can not replace <a> tags
   const replaceBtag = string => string.replace(/[<b> </b>  ]/g, ' ');
 

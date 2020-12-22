@@ -22,7 +22,7 @@ function DisplayFoods() {
       };
 
       //calling the function
-      getFoodsResponse();
+      //getFoodsResponse();
 
   },[]);
 

@@ -60,10 +60,28 @@ const displaySteps = (array) =>  array && array[0].steps.map((step, index) => <u
 const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</div>);
 
   return (
-    <div className="single__meal">
+    <div>
+    <div className="background" style={{backgroundImage: `url(${image})`,
+          backgroundSize: "cover",
+          height: "100vh", width: '100%'}}>
+    </div>
+    <div className="descriptionRecipe">
+     {summary && replaceBtag(summary)}
+
+    </div>
+
+  </div>
+  )
+};
+
+export default SingleMeal;
+
+
+
+/*  <div className="single__meal" >
     {error && error}
 
-      <div className="single__meal__header" style={{backgroundImage: 'url('+image+')',  backgroundSize: "cover", height: "100vh"}}>
+      <div className="single__meal__header">
         <h2 className="single__meal__title">{title}</h2>
 
       </div>
@@ -129,11 +147,4 @@ const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</
        {analyzedInstructions && displaySteps(analyzedInstructions)}
       </div>
 
-    </div>
-  )
-};
-
-export default SingleMeal;
-
-
-
+    </div> */

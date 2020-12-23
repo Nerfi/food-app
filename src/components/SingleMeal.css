@@ -34,8 +34,6 @@
 
 
 .displayStepsAndIngredients {
-  border-style: dotted;
-  background-color: red;
   display: flex;
   align-content: center;
   align-items: center;
@@ -58,5 +56,5 @@
 }
 
 .mealSteps > ol > li {
-padding:20px;
+ padding:20px;
 }

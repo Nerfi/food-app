@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react';
 import {useRouteMatch} from 'react-router-dom';
-import FoodCard from './UI/FoodCard';
 import './SingleMeal.css';
 
 
@@ -27,7 +26,7 @@ function SingleMeal(props) {
     }
 
     //calling the function
-    //fetchSingleMeal();
+    fetchSingleMeal();
 
   },[params.id]);
 
@@ -48,27 +47,47 @@ function SingleMeal(props) {
   } = response;
 
   //esto son los pasos a seguir in order to prepare the plate it's an array of objects
-  console.log(extendedIngredients)
+  console.log(extendedIngredients.map(i =>  i.image))
 
 ///replacing html tags
 const replaceBtag = string => string.replace(/<.*?>/g, '')
 
-//working but make sure to improve it later on
-const displaySteps = (array) =>  array && array[0].steps.map((step, index) => <ul><li key={index}>{step.step}</li></ul>);
-
+const displaySteps = array => {
+  return array && (
+    <ol>
+      {array[0].steps.map((step, index) => <li key={index}> {step.step}</li>)}
+    </ol>
+    )
+  };
 //function in order to display the tags of each meal
 const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</div>);
 
   return (
     <div>
-    <div className="background" style={{backgroundImage: `url(${image})`,
-          backgroundSize: "cover",
-          height: "100vh", width: '100%'}}>
-    </div>
+    {error && error}
+      <div className="background" style={{backgroundImage: `url(${image})`}}>
+        <div className="mealTitle">
+         {title}
+        </div>
+      </div>
     <div className="descriptionRecipe">
      {summary && replaceBtag(summary)}
+     <div className="originalUrl">
+       <span>You can find the origin recipe here:</span>
+       <p><a href={sourceUrl} target="_blank">See recipe</a></p>
+     </div>
 
     </div>
+  {/* display this two container as flex and show the data*/}
+  <div className="displayStepsAndIngredients">
+      <div className="ingredientsMeal">
+      <p>aqui tendremosINGREDIENTES </p>
+      </div>
+
+      <div className="mealSteps">
+       {analyzedInstructions && displaySteps(analyzedInstructions)}
+      </div>
+  </div>
 
   </div>
   )

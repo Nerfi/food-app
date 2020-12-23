@@ -1,0 +1,62 @@
+.background {
+  height: 100vh;
+   width: 100%;
+   background-size: cover;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+}
+
+.descriptionRecipe {
+  position: relative;
+  text-align: center;
+  justify-content: center;
+  margin: 30px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+
+.mealTitle {
+  font-weight:600;
+  font-size:72px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  margin: 50px;
+  max-width: 900px;
+}
+
+.originalUrl {
+  margin:20px;
+}
+
+
+.displayStepsAndIngredients {
+  border-style: dotted;
+  background-color: red;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.ingredientsMeal {
+  width: 50%;
+  justify-content: center;
+  text-align: center;
+}
+
+.mealSteps {
+  width: 50%;
+ background-color: blue;
+ text-align: center;
+ padding: 30px;
+}
+
+.mealSteps > ol > li {
+padding:20px;
+}

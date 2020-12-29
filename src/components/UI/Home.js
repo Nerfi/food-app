@@ -12,6 +12,7 @@ function Home(props){
         <div className="info__home">
          <h2>always choose good</h2>
          <a href="#menu" className="btn"> Our menu !</a>
+         <a href="/random" className="btn">Feeling adventurous?</a>
         </div>
       </div>
       <AboutUs/>

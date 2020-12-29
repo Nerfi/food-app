@@ -10,7 +10,7 @@ function SingleMeal(props) {
 
 
   let {params} = useRouteMatch();
-  //secrete key
+  //secret key
   const API_SECRET = process.env.REACT_APP_FOOD_KEY;
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function SingleMeal(props) {
     }
 
     //calling the function
-    fetchSingleMeal();
+    //fetchSingleMeal();
 
   },[params.id]);
 
@@ -57,11 +57,9 @@ function SingleMeal(props) {
           <p>{step.measures.us.unitShort}</p>
          </div>
         </div>
-      ))
+     ));
   }
 
-
-//create another function in order to handle the name of the product should be the first one capitalize and the rest nope
 
 ///replacing html tags
 const replaceBtag = string => string.replace(/<.*?>/g, '')

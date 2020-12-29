@@ -41,20 +41,32 @@
 }
 
 
-
 .ingredientsMeal {
   width: 50%;
   justify-content: center;
   text-align: center;
 }
 
+
 .mealSteps {
   width: 50%;
- background-color: blue;
  text-align: center;
- padding: 30px;
+  margin-bottom: 18rem;
 }
 
 .mealSteps > ol > li {
  padding:20px;
 }
+
+
+.unitsAndAmount {
+  display: flex;
+ justify-content: center;
+
+}
+
+.unitsAndAmount > p {
+  padding: 5px;
+}
+
+

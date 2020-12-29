@@ -46,8 +46,22 @@ function SingleMeal(props) {
     extendedIngredients
   } = response;
 
-  //esto son los pasos a seguir in order to prepare the plate it's an array of objects
-  console.log(extendedIngredients.map(i =>  i.image))
+
+  //extracting data from API steps response
+  const stepsAndMeasures = object => {
+      return object?.map(step => (
+        <div key={step.name}>
+         <p>{step.name.toUpperCase()}</p>
+         <div className="unitsAndAmount">
+          <p className='amount'>{step.measures.us.amount}</p>
+          <p>{step.measures.us.unitShort}</p>
+         </div>
+        </div>
+      ))
+  }
+
+
+//create another function in order to handle the name of the product should be the first one capitalize and the rest nope
 
 ///replacing html tags
 const replaceBtag = string => string.replace(/<.*?>/g, '')
@@ -61,6 +75,8 @@ const displaySteps = array => {
   };
 //function in order to display the tags of each meal
 const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</div>);
+
+
 
   return (
     <div>
@@ -78,13 +94,15 @@ const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</
      </div>
 
     </div>
-  {/* display this two container as flex and show the data*/}
   <div className="displayStepsAndIngredients">
       <div className="ingredientsMeal">
-      <p>aqui tendremosINGREDIENTES </p>
+       <h2>Ingrediensts</h2>
+       {stepsAndMeasures(extendedIngredients)}
+
       </div>
 
       <div className="mealSteps">
+      <h2>Method</h2>
        {analyzedInstructions && displaySteps(analyzedInstructions)}
       </div>
   </div>
@@ -94,76 +112,3 @@ const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</
 };
 
 export default SingleMeal;
-
-
-
-/*  <div className="single__meal" >
-    {error && error}
-
-      <div className="single__meal__header">
-        <h2 className="single__meal__title">{title}</h2>
-
-      </div>
-
-      <div className="single__meal__tags">
-
-        <div className="single__meal__cuisines">
-         <p> Cuisines:</p>
-
-         <div className="cousine">
-          {cuisines && tagsOfMeal(cuisines)}
-         </div>
-
-        </div>
-
-          <div className="single__meal__dishType">
-            <p>DishTypes:</p>
-
-            <div className="dish">
-            {dishTypes && tagsOfMeal(dishTypes)}
-            </div>
-
-          </div>
-          <div className="single__meal__score">
-           <p>Score:</p>
-             <div className="score">
-             <p>{spoonacularScore}  out of 100</p>
-             </div>
-          </div>
-
-          <div className="single__meal__diets">
-           <p>Diets:</p>
-           <div className="diets">
-             {diets && tagsOfMeal(diets)}
-           </div>
-          </div>
-
-      </div>
-
-      <div className="single__meal__description">
-      <div className="descriptionTitle">
-       <strong className="description__title">Description</strong>:
-      </div>
-         {summary && replaceBtag(summary)}
-      </div>
-
-      <div className="single__meal__body">
-
-           <p>You can find the Original recipe here: </p>
-           <div className="sourceUrl">
-            {sourceUrl}
-           </div>
-
-           <div className="vegan">
-              <p> vegan <br/>{vegan ? 'true': 'false'}</p>
-           </div>
-           <div className="vegetarian">
-            <p>vegetarian <br/>{vegetarian ? 'true' : 'false'}</p>
-           </div>
-      </div>
-
-      <div className="single__meal__steps">
-       {analyzedInstructions && displaySteps(analyzedInstructions)}
-      </div>
-
-    </div> */

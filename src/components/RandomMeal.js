@@ -1,5 +1,6 @@
 import  React from 'react';
 import {useState, useEffect} from 'react';
+import {Nav} from 'react-bootstrap';
 import './RandomMeal.css';
 
 function RandomMeal() {
@@ -7,6 +8,9 @@ function RandomMeal() {
   const [random, setRandom] = useState([]);
   //there is no error
   const [error, setError] = useState(null);
+  //setting tags state
+  const [tags, setTags] = useState([]);
+
   //secret key
   const API_SECRET = process.env.REACT_APP_FOOD_KEY;
 
@@ -24,18 +28,56 @@ function RandomMeal() {
   },[]);
 
   console.log(random)
+  console.log( typeof tags) //string
 
-  const click = (e) => alert('clike' + e.target.value)
+  //selecting element function
+  const select = eventKey => {
+    //taking the state array
+    let originalTags = tags;
+    //creating new array with correct values
+    let newTags;
+
+    newTags =  tags.filter((elem, pos) => {
+       return originalTags.indexOf(elem) == pos;
+        originalTags.push(newTags)
+    })
+    //updating the state
+    return setTags( newTags);
+
+
+
+  }
+
+
+console.log(tags)
+
+
+
+
+
+ //working
+  console.log(tags)
+
+
 
   return (
     <div className='content'>
-    <div className="tags" onClick={click}>
-      <span>Healthy</span>
-      <span>vegan</span>
-      <span>vegetarian</span>
-      <span>gluten free</span>
-    </div>
-
+      <Nav className="justify-content-center"   onSelect={select} >
+        <Nav.Item >
+          <Nav.Link  eventKey="vegetarian" >Tech</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link  eventKey="vegan">News</Nav.Link>
+        </Nav.Item>
+        <Nav.Item >
+          <Nav.Link  eventKey="Health">Health</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link  eventKey="Travel" >
+            Travel
+          </Nav.Link>
+        </Nav.Item>
+   </Nav>
     </div>
     )
 };

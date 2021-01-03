@@ -10,6 +10,8 @@ function RandomMeal() {
   const [error, setError] = useState(null);
   //setting tags state
   const [tags, setTags] = useState([]);
+  //loading state
+  const [loading, setLoading] = useState(false);
 
   //secret key
   const API_SECRET = process.env.REACT_APP_FOOD_KEY;
@@ -27,35 +29,18 @@ function RandomMeal() {
      // fetchRandomMeals();
   },[]);
 
-  console.log(random)
-  console.log( typeof tags) //string
-
-  //selecting element function
-  const select = eventKey => {
-    //taking the state array
-    let originalTags = tags;
-    //creating new array with correct values
-    let newTags;
-
-    newTags =  tags.filter((elem, pos) => {
-       return originalTags.indexOf(elem) == pos;
-        originalTags.push(newTags)
-    })
-    //updating the state
-    return setTags( newTags);
 
 
+const select = (eventKey) => {
+  setTags((tags) => {
+    if (tags.includes(eventKey)) {
+      return tags;
+     }
 
-  }
-
-
-console.log(tags)
-
-
-
-
-
- //working
+     return [...tags, eventKey];
+  });
+};
+ // working
   console.log(tags)
 
 
@@ -64,10 +49,10 @@ console.log(tags)
     <div className='content'>
       <Nav className="justify-content-center"   onSelect={select} >
         <Nav.Item >
-          <Nav.Link  eventKey="vegetarian" >Tech</Nav.Link>
+          <Nav.Link  eventKey="vegetarian" >Vegetarian</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link  eventKey="vegan">News</Nav.Link>
+          <Nav.Link  eventKey="vegan">Vegan</Nav.Link>
         </Nav.Item>
         <Nav.Item >
           <Nav.Link  eventKey="Health">Health</Nav.Link>

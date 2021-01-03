@@ -1,4 +1,4 @@
-import  React,{useState} from 'react';
+import  React,{useState, useEffect} from 'react';
 import {Nav} from 'react-bootstrap';
 import './RandomMeal.css';
 
@@ -14,8 +14,6 @@ function RandomMeal() {
   //secret key
   const API_SECRET = process.env.REACT_APP_FOOD_KEY;
 
-
-
 const select = (eventKey) => {
   //checking if we have already the values on the state array
   setTags((tags) => {
@@ -26,23 +24,27 @@ const select = (eventKey) => {
      return [...tags, eventKey];
   });
 };
- // working both
-  console.log(tags)
-  console.log(random)
 
   //make API call when the user has selected the tags and click the button
   const fetchRandom = async () => {
 
-      await fetch(`https://api.spoonacular.com/recipes/random?number=6&tags=vegetarian,vegan&apiKey=${API_SECRET}`)
+      //joining the user tags
+      const selectedTags = tags.join();
+
+      //making the request
+      await fetch(`https://api.spoonacular.com/recipes/random?number=6&tags=${selectedTags}&apiKey=${API_SECRET}`)
         .then(response => response.json())
         .then(res => setRandom(res))
         .catch(e => setError(e.message))
   };
 
-
-
+//not working
+  console.log(random?.map(meal => <p>{meal.title}</p>))
+//response
+//{recipes: Array(6)}
   return (
     <div className='content'>
+    <div>{error && error}</div>
       <Nav className="justify-content-center"   onSelect={select} >
         <Nav.Item >
           <Nav.Link className={tags.includes('vegetarian') ?  'disabled' :  ''}  eventKey="vegetarian" >Vegetarian</Nav.Link>
@@ -63,8 +65,15 @@ const select = (eventKey) => {
             Very Healthy
           </Nav.Link>
         </Nav.Item>
+
    </Nav>
+   <div className="button">
     <button onClick={fetchRandom}>Search for random recipies</button>
+   </div>
+
+   <div className="displayMeals">
+
+   </div>
 
     </div>
     )

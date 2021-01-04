@@ -1,6 +1,7 @@
-import  React,{useState, useEffect} from 'react';
+import  React,{useState} from 'react';
 import {Nav} from 'react-bootstrap';
 import './RandomMeal.css';
+import FoodCard from './UI/FoodCard';
 
 function RandomMeal() {
 
@@ -34,15 +35,11 @@ const select = (eventKey) => {
       //making the request
       await fetch(`https://api.spoonacular.com/recipes/random?number=6&tags=${selectedTags}&apiKey=${API_SECRET}`)
         .then(response => response.json())
-        .then(res => setRandom(res))
-        .catch(e => setError(e.message))
+        .then(res => setRandom({res: res.recipes}))
   };
 
-//not working
-  console.log(random?.map(meal => <p>{meal.title}</p>))
-//response
-//{recipes: Array(6)}
-  return (
+
+return (
     <div className='content'>
     <div>{error && error}</div>
       <Nav className="justify-content-center"   onSelect={select} >
@@ -72,11 +69,12 @@ const select = (eventKey) => {
    </div>
 
    <div className="displayMeals">
-
-   </div>
+    {random?.res?.map(meal => <FoodCard {...meal} key={meal.id}/> )}
+  </div>
 
     </div>
     )
+
 };
 
 export default RandomMeal;

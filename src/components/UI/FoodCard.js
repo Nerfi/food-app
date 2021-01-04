@@ -12,8 +12,8 @@ function FoodCard(props) {
     summary
   } = props;
 
-  console.log(props, 'props')
-
+  //replacing html tags
+  const replaceBtag = string => string.replace(/<.*?>/g, '')
 
   return(
     <Card style={{ width: '18rem', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
@@ -23,10 +23,6 @@ function FoodCard(props) {
       <Link to={`meal/${id}`}>
         <Card.Title> <strong>{title}</strong></Card.Title>
       </Link>
-
-        <Card.Text>
-        {summary && summary}
-        </Card.Text>
         <Link to={`meal/${id}`}>
          <Button variant="primary">See Recipe</Button>
 

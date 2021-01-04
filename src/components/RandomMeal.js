@@ -1,7 +1,7 @@
 import  React,{useState} from 'react';
-import {Nav} from 'react-bootstrap';
 import './RandomMeal.css';
 import FoodCard from './UI/FoodCard';
+import TagsSelection from './UI/TagsSelection';
 
 function RandomMeal() {
 
@@ -41,39 +41,20 @@ const select = (eventKey) => {
 
 return (
     <div className='content'>
-    <div>{error && error}</div>
-      <Nav className="justify-content-center"   onSelect={select} >
-        <Nav.Item >
-          <Nav.Link className={tags.includes('vegetarian') ?  'disabled' :  ''}  eventKey="vegetarian" >Vegetarian</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link className={tags.includes('vegan')  ? 'disabled' :  ''} eventKey="vegan">Vegan</Nav.Link>
-        </Nav.Item>
-        <Nav.Item >
-          <Nav.Link className={tags.includes('gluten Free')  ? 'disabled' :  ''} eventKey="gluten Free">Gluten Free</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link className={tags.includes('Dairy Free')  ? 'disabled' :  ''} eventKey="Dairy Free" >
-            Dairy Free
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link className={tags.includes('very helthy')  ? 'disabled' :  ''} eventKey="very helthy" >
-            Very Healthy
-          </Nav.Link>
-        </Nav.Item>
+      <div>{error && <p>something went wrong...</p>}</div>
 
-   </Nav>
-   <div className="button">
-    <button onClick={fetchRandom}>Search for random recipies</button>
-   </div>
+      <TagsSelection select={select} tags={tags}/>
 
-   <div className="displayMeals">
-    {random?.res?.map(meal => <FoodCard {...meal} key={meal.id}/> )}
-  </div>
+     <div className="button">
+      <button onClick={fetchRandom}>Search for random recipies</button>
+     </div>
 
+     <div className="displayMeals">
+      {random?.res?.map(meal => <FoodCard {...meal} key={meal.id}/> )}
     </div>
-    )
+
+  </div>
+)
 
 };
 

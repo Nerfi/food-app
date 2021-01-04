@@ -3,7 +3,7 @@ import { createContext } from "react";
 import firebase from '../firebase/firebase';
 
   // 1- creating the context Hook
- const UserContext = createContext({user: null});
+ const UserContext = createContext();
 
  /*
   we create a fucntion that Will handle the changes on the state, in this

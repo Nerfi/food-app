@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleMeal from './components/SingleMeal';
 import NavbarFood from './components/UI/Navbar';
 import RandomMeal from './components/RandomMeal';
+import Login from './Auth/Login';
+import Signup from './Auth/Signup';
 //importing the context
 import {UserAuth} from './AuthContext/UserContext';
 
@@ -21,6 +23,8 @@ function App() {
 
          <Route path="/meal/:id" component={SingleMeal}/>
          <Route path="/random" component={RandomMeal}/>
+         <Route path="/login" component={Login}/>
+         <Route path="/signup" component={Signup}/>
          <Route exact  path="/" component={Home} />
          </Switch>
          </UserAuth>

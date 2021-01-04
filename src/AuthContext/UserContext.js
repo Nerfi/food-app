@@ -21,6 +21,7 @@ import firebase from '../firebase/firebase';
       setUser(user);
 
     });
+    console.log(user, 'user')
 
   },[user]);
 

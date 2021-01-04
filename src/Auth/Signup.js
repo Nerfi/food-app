@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import firebase from '../firebase/firebase';
+import './Signup.css';
 import { useHistory } from "react-router-dom";
 
 
@@ -16,33 +17,46 @@ function Signup () {
     const handleSubmit = (e) => {
       e.preventDefault();
 
+      try {
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(result => {
-            if(result) {
-              history.push('/');
-            }
+          firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(result => {
+              console.log(result,  'result')
+              if(result) {
+                history.push('/');
+              }
 
-            firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
-              email: email,
-              name: name
+              firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
+                email: email,
+                displayName: name
+              })
             })
-          }).catch(error => setError(error))
+        } catch(error) {
+          setError(error)
+        }
+
     };
 
 
 
 
   return(
-    <div className="signupContainer" style={{marginTop: '80px'}}>
+    <div className="signupContainer" style={{marginTop: '100px'}}>
      {error && error}
-    <form onSubmit={handleSubmit}>
-     <label>Email</label>
-     <input type="email" name="email" placeholder="enter email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+    <form onSubmit={handleSubmit} className="formContainer">
+     <div className="signupSpan">Signup! </div>
+     <label className='emailLabel'>Email</label>
+     <div className="input">
+      <input type="email" required name="email" placeholder="enter email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+     </div>
      <label>Password</label>
-     <input type="password" name="password" placeholder="enter password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+     <div className="input">
+     <input type="password" required name="password" placeholder="enter password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+     </div>
      <label>User Name</label>
+     <div className="input">
      <input type="text" placeholder="choose user name" required onChange={(e) => setName(e.target.value)} value={name}/>
+     </div>
      <button type="submit" className="btn__signin">Submit</button>
     </form>
     </div>

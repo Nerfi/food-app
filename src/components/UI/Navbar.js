@@ -5,6 +5,7 @@ import {Navbar} from 'react-bootstrap';
 function NavbarFood() {
 
   const user = useContext(UserContext);
+  console.log({user}, 'user')
 
   return(
     <Navbar style={{zIndex: 1 }} fixed="top" bg="light">
@@ -12,7 +13,7 @@ function NavbarFood() {
   <Navbar.Toggle />
   <Navbar.Collapse className="justify-content-end">
     <Navbar.Text>
-      Signed in as: <a href="#login">{ user && user ? user.name : ""}</a>
+      Signed in as: <a href="#login">{ user && user ? user.email : ""}</a>
     </Navbar.Text>
   </Navbar.Collapse>
 </Navbar>

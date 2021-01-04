@@ -1,0 +1,31 @@
+.signupContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+
+}
+
+
+.signupSpan {
+  color: red;
+text-align: center;
+font-size: 50px;
+
+}
+
+.input {
+  padding: 10px;
+  text-align: center;
+
+}
+
+.formContainer {
+  margin-top: 50px;
+  border-style: solid;
+  text-align: center;
+}
+
+
+.formContainer > label {
+  text-align: center;
+}

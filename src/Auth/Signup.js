@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import firebase from '../firebase/firebase';
+import { useHistory } from "react-router-dom";
+
 
 function Signup () {
 
@@ -8,25 +10,32 @@ function Signup () {
   const [name,setName] = useState('');
   const [error, setError] = useState(null);
 
+    const history = useHistory();
+
     //making the post reques to firebase
     const handleSubmit = (e) => {
-      //preventing the default behavior
-        e.preventDefault();
-        //making the request
+      e.preventDefault();
+
+
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(result => {
             if(result) {
-              result.user.updateProfile({
-                displayName: name
-              })
+              history.push('/');
             }
-          })
+
+            firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
+              email: email,
+              name: name
+            })
+          }).catch(error => setError(error))
     };
+
+
 
 
   return(
     <div className="signupContainer" style={{marginTop: '80px'}}>
-     {error && <p>Something went wrong</p>}
+     {error && error}
     <form onSubmit={handleSubmit}>
      <label>Email</label>
      <input type="email" name="email" placeholder="enter email" value={email} onChange={(e) => setEmail(e.target.value)}/>

@@ -3,7 +3,7 @@ import { createContext } from "react";
 import firebase from '../firebase/firebase';
 
   // 1- creating the context Hook
- const UserContext = createContext();
+ const UserContext = createContext(null);
 
  /*
   we create a fucntion that Will handle the changes on the state, in this
@@ -13,7 +13,7 @@ import firebase from '../firebase/firebase';
 
  function UserAuth (props) {
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
       //onauthStatechange is a hook that will listen whenever the user is logged in or logged out  in the app just that

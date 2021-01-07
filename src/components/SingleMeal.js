@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react';
 import {useRouteMatch} from 'react-router-dom';
 import './SingleMeal.css';
 import {apiHelper} from '../API/api';
+import firebase from '../firebase/firebase';
 
 
 function SingleMeal(props) {
@@ -74,15 +75,32 @@ const displaySteps = array => {
 //function in order to display the tags of each meal
 const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</div>);
 
+const [s,setS] = useState({})
+//adding to firebase
+const addToDb = (e) => {
+
+  e.preventDefault();
+
+  firebase.firestore()
+  .collection('savedMeals').add(response)
+  .then(res => setS(res))
+
+}
 
 
   return (
     <div>
     {error && error}
       <div className="background" style={{backgroundImage: `url(${image})`}}>
+       <div className="saveIcon">
+       </div>
         <div className="mealTitle">
          {title}
         </div>
+        <div onClick={addToDb} >
+          <i class=" extraClass fa fa-bookmark"  style={{ width: '120px', marginTop: '37rem'}}></i>
+        </div>
+
       </div>
     <div className="descriptionRecipe">
      {summary && replaceBtag(summary)}

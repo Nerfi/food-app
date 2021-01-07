@@ -53,7 +53,7 @@ const loginUser = (e) => {
       </button>
 
       <div className="alreadyAccount">
-       <p>already have an account ? <Link to="Signup" >Sign up !</Link> </p>
+       <p>don't have an account ? <Link to="Signup" >Sign up !</Link> </p>
 
       </div>
 

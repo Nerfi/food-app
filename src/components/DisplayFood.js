@@ -1,28 +1,29 @@
 import React,{useState, useEffect} from 'react';
 import FoodCard from './UI/FoodCard';
 import './DisplayFood.css';
+import {apiHelper} from '../API/api';
 
 function DisplayFoods() {
+
+  console.log({apiHelper})
 
   const [foods , setFoods] = useState([]);
   const [error, setError] = useState(null);
 
-  //useEffect API call
   useEffect(() => {
 
-      const getFoodsResponse = async () => {
+     const API_SECRET = process.env.REACT_APP_FOOD_KEY;
+     const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_SECRET}&number=21`;
 
-        const API_SECRET = process.env.REACT_APP_FOOD_KEY;
-        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_SECRET}&number=21`;
+     const getFood = async () => {
 
-        await fetch(url)
-        .then(res => res.json())
+       const getFoodsResponse = await apiHelper(url)
         .then(res => setFoods(res.results))
-        .catch(err =>  setError(err.message))
-      };
+        .catch(e => setError(e.message))
 
-      //calling the function
-     // getFoodsResponse();
+     }
+
+    //getFood();
 
   },[]);
 

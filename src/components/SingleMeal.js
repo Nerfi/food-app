@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import {useRouteMatch} from 'react-router-dom';
 import './SingleMeal.css';
+import {apiHelper} from '../API/api';
 
 
 function SingleMeal(props) {
@@ -13,20 +14,19 @@ function SingleMeal(props) {
   //secret key
   const API_SECRET = process.env.REACT_APP_FOOD_KEY;
 
+
   useEffect(() => {
 
-    const fetchSingleMeal = async () => {
+      const fetchSingleMeal = async () => {
 
-      const url = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_SECRET}`;
-      //fetching data
-    await fetch(url)
-        .then(res => res.json())
-        .then(res => setResponse(res))
-        .catch(e => setError(e.message))
-    }
+        const url = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_SECRET}`;
+        await apiHelper(url)
+          .then(res => setResponse(res))
+          .catch(e =>  setError(e.message))
 
-    //calling the function
-    //fetchSingleMeal();
+      }
+      //calling the fucntion
+      fetchSingleMeal();
 
   },[params.id]);
 

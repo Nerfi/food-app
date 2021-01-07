@@ -11,7 +11,7 @@ function Signup () {
   const [name,setName] = useState('');
   const [error, setError] = useState(null);
 
-    const history = useHistory();
+  const history = useHistory();
 
     //making the post reques to firebase
     const handleSubmit = (e) => {
@@ -44,7 +44,7 @@ function Signup () {
     <div className="signupContainer" style={{marginTop: '100px'}}>
      {error && error}
     <form onSubmit={handleSubmit} className="formContainer">
-     <div className="signupSpan">Signup! </div>
+     <div className="signupSpan">Sign up! </div>
      <label className='emailLabel'>Email</label>
      <div className="input">
       <input type="email" required name="email" placeholder="enter email" value={email} onChange={(e) => setEmail(e.target.value)}/>

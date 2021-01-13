@@ -85,16 +85,24 @@ const addToDb = (e) => {
 
   e.preventDefault();
 
-  //firebase.firestore()
-  //.collection('savedMeals').add(response)
-  //.then(res => setS(res))
-
-  firebase.firestore().collection('savedMeals').doc(params.id).add({
-    //aqui tengo que llamar al usuario
-    item: response,
-    user: uid,
-    name: displayName
-  }).then(res =>  setS(res))
+  firebase.firestore()
+    .collection('users')
+    .doc(uid)
+    .collection('saved')
+    .add({
+    title,
+    summary,
+    sourceUrl,
+    spoonacularScore,
+    analyzedInstructions,
+    cuisines,
+    diets,
+    dishTypes,
+    vegan,
+    vegetarian,
+    extendedIngredients
+    })
+    .then(res =>  setS(res))
 
 }
 

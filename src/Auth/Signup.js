@@ -14,12 +14,12 @@ function Signup () {
   const history = useHistory();
 
     //making the post reques to firebase
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
       e.preventDefault();
 
       try {
 
-          firebase.auth().createUserWithEmailAndPassword(email, password)
+          await firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(result => {
               console.log(result,  'result')
               if(result) {

@@ -8,13 +8,14 @@ import { UserContext} from '../AuthContext/UserContext';
 
 function SingleMeal(props) {
 
-  const {uid, displayName}  = useContext(UserContext);
-  console.log( uid, 'user uid')
 
   const [response, setResponse] = useState({});
   const [error, setError] = useState(null);
+  const [s,setS] = useState({})
+  const [loading, setLoading] = useState(false);
 
 
+  const {uid, displayName}  = useContext(UserContext);
   let {params} = useRouteMatch();
   //secret key
   const API_SECRET = process.env.REACT_APP_FOOD_KEY;
@@ -23,17 +24,22 @@ function SingleMeal(props) {
   useEffect(() => {
 
       const fetchSingleMeal = async () => {
+        setLoading(old => !old)
 
         const url = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_SECRET}`;
         await apiHelper(url)
           .then(res => setResponse(res))
           .catch(e =>  setError(e.message))
 
+       setLoading(old => !old)
       }
       //calling the fucntion
       fetchSingleMeal();
 
   },[params.id]);
+
+//working
+if(loading)return <p style={{marginTop: '50px'}}>loading</p>
 
   //deconstructing the object response
   const {
@@ -79,7 +85,7 @@ const displaySteps = array => {
 //function in order to display the tags of each meal
 const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</div>);
 
-const [s,setS] = useState({})
+
 //adding to firebase
 const addToDb = (e) => {
 

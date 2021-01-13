@@ -41,9 +41,6 @@ function Signup () {
 
     };
 
-
-
-
   return(
     <div className="signupContainer" style={{marginTop: '100px'}}>
     <form onSubmit={handleSubmit} className="formContainer">

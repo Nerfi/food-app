@@ -23,16 +23,20 @@ function Signup () {
             .then(result => {
               console.log(result,  'result')
               if(result) {
+
+                result.user.updateProfile({
+                displayName: name
+              })
                 history.push('/');
               }
 
               firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
                 email: email,
-                displayName: name
+                name: name
               })
-            })
+            }).catch(e => setError(e.message))
         } catch(error) {
-          setError(error)
+          setError(error.message)
         }
 
     };
@@ -42,8 +46,8 @@ function Signup () {
 
   return(
     <div className="signupContainer" style={{marginTop: '100px'}}>
-     {error && error}
     <form onSubmit={handleSubmit} className="formContainer">
+     {error && error}
      <div className="signupSpan">Sign up! </div>
      <label className='emailLabel'>Email</label>
      <div className="input">

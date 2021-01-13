@@ -5,8 +5,6 @@ import {apiHelper} from '../API/api';
 
 function DisplayFoods() {
 
-  console.log({apiHelper})
-
   const [foods , setFoods] = useState([]);
   const [error, setError] = useState(null);
 

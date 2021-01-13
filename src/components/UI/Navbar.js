@@ -27,7 +27,7 @@ function NavbarFood() {
   <Navbar.Toggle />
   <Navbar.Collapse className="justify-content-end">
     <Navbar.Text>
-    {user ? `Sign In as ${user.email}` : ""}
+    {user ? `Sign In as ${user.displayName}` : ""}
     </Navbar.Text>
 
     {

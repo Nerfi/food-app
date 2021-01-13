@@ -1,11 +1,15 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect, useContext} from 'react';
 import {useRouteMatch} from 'react-router-dom';
 import './SingleMeal.css';
 import {apiHelper} from '../API/api';
 import firebase from '../firebase/firebase';
+import { UserContext} from '../AuthContext/UserContext';
 
 
 function SingleMeal(props) {
+
+  const {uid, displayName}  = useContext(UserContext);
+  console.log( uid, 'user uid')
 
   const [response, setResponse] = useState({});
   const [error, setError] = useState(null);
@@ -81,9 +85,16 @@ const addToDb = (e) => {
 
   e.preventDefault();
 
-  firebase.firestore()
-  .collection('savedMeals').add(response)
-  .then(res => setS(res))
+  //firebase.firestore()
+  //.collection('savedMeals').add(response)
+  //.then(res => setS(res))
+
+  firebase.firestore().collection('savedMeals').doc(params.id).add({
+    //aqui tengo que llamar al usuario
+    item: response,
+    user: uid,
+    name: displayName
+  }).then(res =>  setS(res))
 
 }
 

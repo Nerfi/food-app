@@ -38,3 +38,20 @@
   font-size: 1.5em;
   font-weight:700;
 }
+
+/* media querys */
+
+@media (max-width: 768px) {
+  .mainAbout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imgRight  {
+      width: 60vh;
+    justify-content: center;
+  }
+
+}
+
+

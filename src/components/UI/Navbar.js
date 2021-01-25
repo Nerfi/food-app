@@ -10,9 +10,9 @@ function NavbarFood() {
   const history  = useHistory();
   const [error, setError] = useState(null);
 
-    const signOutUSer = () => {
+    const signOutUSer = async () => {
 
-      firebase.auth().signOut().then(() => {
+      await firebase.auth().signOut().then(() => {
         history.push("/");
 
       }).catch((error) => {
@@ -23,19 +23,27 @@ function NavbarFood() {
 
   return(
     <Navbar style={{zIndex: 1 }} fixed="top" bg="light">
-  <Navbar.Brand href="/"><span style={{color: '#ff0157'}}>F</span>oodied</Navbar.Brand>
-  <Navbar.Toggle />
-  <Navbar.Collapse className="justify-content-end">
-    <Navbar.Text>
-    {user ? `Sign In as ${user.displayName}` : ""}
-    </Navbar.Text>
+    <Navbar.Brand href="/"><span style={{color: '#ff0157'}}>F</span>oodied</Navbar.Brand>
+    <Navbar.Toggle />
+    <Navbar.Collapse className="justify-content-end">
+      <Navbar.Text style={{padding: '20px'}}>
+      {user ? `${user.displayName}` : ""}
+      </Navbar.Text>
 
     {
-      user ? <Navbar.Text style={{paddingLeft: '10px'}} onClick={signOutUSer} style={{cursor: 'pointer'}}>
-      Sign out
-     </Navbar.Text> : <Navbar.Text style={{paddingLeft: '15px'}} onClick={() =>  history.push('/login') } style={{cursor: 'pointer'}}>
-      login
-    </Navbar.Text>
+      user ? <>
+       <Navbar.Text style={{paddingLeft: '10px'}} onClick={signOutUSer} style={{cursor: 'pointer'}}>
+      Signout
+     </Navbar.Text>
+
+     <Navbar.Text style={{paddingRight: '15px'}} onClick={() => history.push("/ashboard")} style={{cursor: 'pointer'}}>
+       Dashboard
+     </Navbar.Text>
+     </>
+      :
+       <Navbar.Text style={{paddingLeft: '15px'}} onClick={() =>  history.push('/login') } style={{cursor: 'pointer'}}>
+       login
+      </Navbar.Text>
     }
 
 

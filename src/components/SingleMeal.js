@@ -78,7 +78,7 @@ const replaceBtag = string => string.replace(/<.*?>/g, '')
 const displaySteps = array => {
   return array && (
     <ol>
-      {array[0].steps.map((step, index) => <li key={index}> {step.step}</li>)}
+      {array[0]?.steps?.map((step, index) => <li key={index}> {step.step}</li>)}
     </ol>
     )
   };
@@ -123,7 +123,7 @@ const addToDb = (e) => {
          {title}
         </div>
         <div onClick={addToDb} >
-          <i class=" extraClass fa fa-bookmark"  style={{ width: '120px', marginTop: '37rem'}}></i>
+          <i className=" extraClass fa fa-bookmark"  style={{ width: '120px', marginTop: '37rem'}}></i>
         </div>
 
       </div>

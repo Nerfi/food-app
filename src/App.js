@@ -7,6 +7,7 @@ import NavbarFood from './components/UI/Navbar';
 import RandomMeal from './components/RandomMeal';
 import Login from './Auth/Login';
 import Signup from './Auth/Signup';
+import Dashboard from './components/userProfile/Dashboard';
 //importing the context
 import {UserAuth} from './AuthContext/UserContext';
 
@@ -25,6 +26,7 @@ function App() {
          <Route path="/random" component={RandomMeal}/>
          <Route path="/login" component={Login}/>
          <Route path="/signup" component={Signup}/>
+         <Route path="/dashboard" component={Dashboard}/>
          <Route exact  path="/" component={Home} />
          </Switch>
          </UserAuth>

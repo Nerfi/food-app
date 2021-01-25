@@ -36,8 +36,8 @@ function NavbarFood() {
       Signout
      </Navbar.Text>
 
-     <Navbar.Text style={{paddingRight: '15px'}} onClick={() => history.push("/ashboard")} style={{cursor: 'pointer'}}>
-       Dashboard
+     <Navbar.Text style={{paddingRight: '15px'}} onClick={() => history.push("/dashboard")} style={{cursor: 'pointer'}}>
+       Profile
      </Navbar.Text>
      </>
       :

@@ -87,11 +87,11 @@ const tagsOfMeal = array => array?.map(tag => <div className="meal__tag">{tag}</
 
 
 //adding to firebase
-const addToDb = (e) => {
+const addToDb = async (e) => {
 
   e.preventDefault();
 
-  firebase.firestore()
+  await firebase.firestore()
     .collection('users')
     .doc(uid)
     .collection('saved')

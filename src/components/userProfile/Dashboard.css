@@ -3,6 +3,15 @@
  text-align: center;
 }
 
-.upload {
+
+.savedMealsCard {
+  display: grid;
   justify-content: center;
+  align-content: center;
+  grid-gap: 40px;
+  grid-auto-flow: column;
+  margin-top: 50px;
+
 }
+
+

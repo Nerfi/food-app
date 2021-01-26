@@ -13,8 +13,8 @@ function FoodCard(props) {
   } = props;
 
   return(
-    <Card style={{ width: '18rem', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-      <Card.Img variant="top" src={image} />
+    <Card  style={{ width: '18rem', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
+      <Card.Img variant="top" src={image } />
       <Card.Body>
 
       <Link to={`meal/${id}`}>
@@ -22,7 +22,6 @@ function FoodCard(props) {
       </Link>
         <Link to={`meal/${id}`}>
          <Button variant="primary">See Recipe</Button>
-
         </Link>
       </Card.Body>
       </Card>

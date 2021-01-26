@@ -38,6 +38,8 @@ const select = (eventKey) => {
         .then(res => setRandom({res: res.recipes}))
   };
 
+  console.log(random, 'random')
+
 
 return (
     <div className='content'>

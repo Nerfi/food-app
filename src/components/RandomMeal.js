@@ -2,6 +2,7 @@ import  React,{useState} from 'react';
 import './RandomMeal.css';
 import FoodCard from './UI/FoodCard';
 import TagsSelection from './UI/TagsSelection';
+import {apiHelper} from '../API/api';
 
 function RandomMeal() {
 
@@ -31,11 +32,11 @@ const select = (eventKey) => {
 
       //joining the user tags
       const selectedTags = tags.join();
-
+      const url = `https://api.spoonacular.com/recipes/random?number=6&tags=${selectedTags}&apiKey=${API_SECRET}`;
       //making the request
-      await fetch(`https://api.spoonacular.com/recipes/random?number=6&tags=${selectedTags}&apiKey=${API_SECRET}`)
-        .then(response => response.json())
+      await apiHelper(url)
         .then(res => setRandom({res: res.recipes}))
+        .catch(e => setError(e.message))
   };
 
   console.log(random, 'random')

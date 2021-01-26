@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const [saved, setSaved] = useState([]);
   const [error, setError] = useState(null);
-  const {uid, email, displayName} = useContext(UserContext);
+  const {uid, email, displayName, photoURL} = useContext(UserContext);
 
   useEffect(() => {
 
@@ -35,18 +35,17 @@ const Dashboard = () => {
 
   },[])
 
-  console.log(saved, 'saved')
-
-
-
+  const image = null;
 
   return(
     <div className="dashboard">
     {error && <p>something went wrong {error}</p>}
       <div className="userData">
 
-       <img src="https://images.unsplash.com/photo-1569087682520-45253cc2e0ee?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-        alt="userImag profile" style={{ borderRadius: '70%', height: '50vh'}}/>
+        <img src={photoURL ? photoURL : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TWY19cEEgmGPM4BFBBUcfQHaIZ%26pid%3DApi&f=1'}
+        alt="userProfile"
+        style={{ borderRadius: '70%', height: '50vh'}}/>
+         {/* ADD LINK TO CHANGE SETTINGS OF THE PAGE , user profile*/}
 
        <div className="userInfo">
        <h3>{displayName}</h3>
@@ -58,7 +57,7 @@ const Dashboard = () => {
       <h2>My saved meals </h2>
 
         <div className="savedMealsCard">
-        { saved?.map(meal => <FoodCard {...meal} key={meal.id} />)}
+        { saved.map(meal => <FoodCard {...meal} key={meal.id} />)}
 
         </div>
 

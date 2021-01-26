@@ -32,11 +32,11 @@ function NavbarFood() {
 
     {
       user ? <>
-       <Navbar.Text style={{paddingLeft: '10px'}} onClick={signOutUSer} style={{cursor: 'pointer'}}>
+       <Navbar.Text style={{padding: '10px'}} onClick={signOutUSer} style={{cursor: 'pointer'}}>
       Signout
      </Navbar.Text>
 
-     <Navbar.Text style={{paddingRight: '15px'}} onClick={() => history.push("/dashboard")} style={{cursor: 'pointer'}}>
+     <Navbar.Text style={{margin: '15px'}} onClick={() => history.push("/dashboard")} style={{cursor: 'pointer'}}>
        Profile
      </Navbar.Text>
      </>

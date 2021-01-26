@@ -54,9 +54,9 @@ if(loading)return <p style={{marginTop: '50px'}}>loading</p>
     dishTypes,
     vegan,
     vegetarian,
-    extendedIngredients
+    extendedIngredients,
+    id
   } = response;
-
 
   //extracting data from API steps response
   const stepsAndMeasures = object => {
@@ -96,6 +96,7 @@ const addToDb = async (e) => {
     .doc(uid)
     .collection('saved')
     .add({
+    image,
     title,
     summary,
     sourceUrl,
@@ -106,7 +107,8 @@ const addToDb = async (e) => {
     dishTypes,
     vegan,
     vegetarian,
-    extendedIngredients
+    extendedIngredients,
+    id
     })
     .then(res =>  setS(res))
 

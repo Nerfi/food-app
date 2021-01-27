@@ -23,10 +23,12 @@ const UpdateUserData = () => {
  //current user
  const currentUser = firebase.auth().currentUser;
 
-//update name and url function
-const updateData  = async (name, photoURL) => {
 
-  if(name && photoURL) {
+//update name and url function
+const updateData = async (name, photoURL,e) => {
+  e.preventDefault()
+
+  if(name && photoURL != '') {
 
     await currentUser.updateProfile({
       displayName: name,
@@ -40,7 +42,7 @@ const updateData  = async (name, photoURL) => {
 //update email function
 const updateEmial = async (email) => {
 
-    if(newEmail) {
+    if(newEmail != null) {
       await currentUser.updateEmail(email).then(() => {
         history.push('/')
       }).catch(e =>  setError(e.message))
@@ -111,7 +113,7 @@ if(newEmail && newName && image && url) {
     <div className="formWrap">
     <div className="formContent">
     {error && <p>Something went wrong {error}</p>}
-      <form  className="formForm" onSubmit={updateProfileData}>
+      <form  className="formForm" onSubmit={ () => updateData(newName, url)}>
         <h2 className="updateHeader">Update your profile</h2>
         <label  className="formLabel" required>{displayName}</label>
         <input type="text"
@@ -122,6 +124,7 @@ if(newEmail && newName && image && url) {
         value={newName}
         />
         <label className="formLabel">{email}</label>
+        {/*
         <input type="email"
         className="formInput"
         placeholder=" new email"
@@ -129,6 +132,7 @@ if(newEmail && newName && image && url) {
         onChange={(e) => setNwEmail(e.target.value)}
         value={newEmail}
         />
+      */}
         <label className="formLabel">Select and Image</label>
         <input type="file" className="formInput" required onChange={handleChange}/>
         <button type="submit" style={{marginTop: '-50px'}}></button>

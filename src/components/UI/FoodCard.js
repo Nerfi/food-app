@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 
 function FoodCard(props) {
 
-  //desestructurando los props
   const {
     image,
     title,

@@ -1,7 +1,7 @@
 import React,{useState,useContext} from  'react';
 import { UserContext} from '../../AuthContext/UserContext';
 import {Navbar} from 'react-bootstrap';
-import firebase from '../../firebase/firebase';
+import {firebase} from '../../firebase/firebase';
 import {useHistory} from 'react-router-dom';
 
 function NavbarFood() {
@@ -26,22 +26,22 @@ function NavbarFood() {
     <Navbar.Brand href="/"><span style={{color: '#ff0157'}}>F</span>oodied</Navbar.Brand>
     <Navbar.Toggle />
     <Navbar.Collapse className="justify-content-end">
-      <Navbar.Text style={{padding: '20px'}}>
+      <Navbar.Text >
       {user ? `${user.displayName}` : ""}
       </Navbar.Text>
 
     {
-      user ? <>
-       <Navbar.Text style={{padding: '10px'}} onClick={signOutUSer} style={{cursor: 'pointer'}}>
+      user ? <div>
+       <Navbar.Text  onClick={signOutUSer} style={{cursor: 'pointer'}}>
       Signout
      </Navbar.Text>
 
-     <Navbar.Text style={{margin: '15px'}} onClick={() => history.push("/dashboard")} style={{cursor: 'pointer'}}>
+     <Navbar.Text  onClick={() => history.push("/dashboard")} style={{cursor: 'pointer'}}>
        Profile
      </Navbar.Text>
-     </>
+     </div>
       :
-       <Navbar.Text style={{paddingLeft: '15px'}} onClick={() =>  history.push('/login') } style={{cursor: 'pointer'}}>
+       <Navbar.Text onClick={() =>  history.push('/login') } style={{cursor: 'pointer'}}>
        login
       </Navbar.Text>
     }

@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import 'firebase/firestore';
+import 'firebase/storage';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -15,4 +16,7 @@ const firebaseConfig = {
 //initilalizing the app
 firebase.initializeApp(firebaseConfig);
 
-export  default firebase;
+const storage = firebase.storage();
+
+export   {firebase,storage};
+

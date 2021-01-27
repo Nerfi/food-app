@@ -39,8 +39,6 @@ const select = (eventKey) => {
         .catch(e => setError(e.message))
   };
 
-  console.log(random, 'random')
-
 
 return (
     <div className='content'>

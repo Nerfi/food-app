@@ -10,6 +10,7 @@ import Signup from './Auth/Signup';
 import Dashboard from './components/userProfile/Dashboard';
 //importing the context
 import {UserAuth} from './AuthContext/UserContext';
+import UpdateUserData from './components/UI/UpdateUserData';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
          <Route path="/login" component={Login}/>
          <Route path="/signup" component={Signup}/>
          <Route path="/dashboard" component={Dashboard}/>
+         <Route path="/updateUserData" component={UpdateUserData}/>
          <Route exact  path="/" component={Home} />
          </Switch>
          </UserAuth>

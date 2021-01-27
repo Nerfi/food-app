@@ -2,7 +2,7 @@ import React, {useState,useEffect, useContext} from 'react';
 import {useRouteMatch} from 'react-router-dom';
 import './SingleMeal.css';
 import {apiHelper} from '../API/api';
-import firebase from '../firebase/firebase';
+import {firebase} from '../firebase/firebase';
 import { UserContext} from '../AuthContext/UserContext';
 
 

@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import { createContext } from "react";
-import firebase from '../firebase/firebase';
+import {firebase}from '../firebase/firebase';
 
   // 1- creating the context Hook
  const UserContext = createContext();

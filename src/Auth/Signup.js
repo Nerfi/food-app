@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import firebase from '../firebase/firebase';
+import {firebase} from '../firebase/firebase';
 import './Signup.css';
 import { useHistory } from "react-router-dom";
 

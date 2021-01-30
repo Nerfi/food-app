@@ -1,36 +1,32 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import { firebase} from '../firebase/firebase';
 import './Login.css';
 import {useHistory, Link} from 'react-router-dom';
+import { UserContext} from '../AuthContext/UserContext';
+
 
 function Login () {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-
+  const {login} = useContext(UserContext);
   const history = useHistory();
 
 
-  //login user in
-const loginUser = (e) => {
+
+const loginUser = async(e) => {
   e.preventDefault();
 
   try {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(res => {
-      history.push("/")
-    })
-    .catch((e) => {
-      setError(e.message)
-    })
+    await login(email, password)
+    history.push('/');
 
-  } catch(e) {
-    setError(e.message)
+  }catch(e){
+    setError(e.message);
   }
 
-};
-
+}
 
   return(
     <div className="loginContainer">

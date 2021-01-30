@@ -6,19 +6,20 @@ import {useHistory} from 'react-router-dom';
 
 function NavbarFood() {
 
-  const user = useContext(UserContext);
+  const {user, logOut} = useContext(UserContext);
   const history  = useHistory();
   const [error, setError] = useState(null);
 
-    const signOutUSer = async () => {
 
-      await firebase.auth().signOut().then(() => {
-        history.push("/");
+  const signOut = async () => {
 
-      }).catch((error) => {
-     // An error happened.
-     setError(error.message)
-    });
+    try {
+     await logOut();
+     history.push("/");
+
+    } catch(error){
+      setError(error.message)
+    }
   }
 
   return(
@@ -32,7 +33,7 @@ function NavbarFood() {
 
     {
       user ? <div>
-       <Navbar.Text  onClick={signOutUSer} style={{cursor: 'pointer'}}>
+       <Navbar.Text  onClick={signOut} style={{cursor: 'pointer'}}>
       Signout
      </Navbar.Text>
 

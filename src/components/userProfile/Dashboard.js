@@ -56,8 +56,8 @@ const Dashboard = () => {
         style={{ borderRadius: '70%', height: '50vh'}}/>
 
        <div className="userInfo">
-       <h3>{ user.displayName }</h3>
-       <p>{user.email}</p>
+       <h3>{ user?.displayName }</h3>
+       <p>{user?.email}</p>
        </div>
        <div className="changeDataBtn">
 

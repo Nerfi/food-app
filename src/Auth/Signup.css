@@ -1,46 +1,4 @@
-.signupContainer {
-  display: flex;
-  justify-content: center;
-
-
+.cardComponent {
+  align-items: center;
 }
 
-
-.signupSpan {
-
-text-align: center;
-font-size: 50px;
-
-}
-
-.input {
-  padding: 10px;
-  text-align: center;
-
-}
-
-.formContainer {
-  margin-top: 50px;
-  text-align: center;
-  border-style: solid;
-  width: 25rem;
-  height: 30rem;
-  border: 1px solid;
-  padding: 10px;
-  box-shadow: 5px 10px 18px #888888;
-  padding: 50px;
-
-}
-
-
-.formContainer > label  {
-  text-align: center;
-
-}
-
-.btn__signin {
-  background-color: #54e346;
-  width: 100px;
-  height: 40px;
-
-}

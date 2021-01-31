@@ -22,7 +22,7 @@ import {firebase}from '../firebase/firebase';
     */
 
     const signUp = (email, password) => {
-      return firebase.createUserWithEmailAndPassword(email, password)
+      return firebase.auth().createUserWithEmailAndPassword(email, password)
     };
 
     const login = (email, password) => {
@@ -45,6 +45,10 @@ import {firebase}from '../firebase/firebase';
     return user.updatePassword(password)
   }
 
+  const updateUserName = (name) => {
+    return user.updateProfile(name)
+  }
+
 
 
    useEffect(() => {
@@ -55,7 +59,7 @@ import {firebase}from '../firebase/firebase';
 
     return unsubscribe;
 
-  },[]);
+  },[user]);
 
    const value = {
     user,
@@ -64,7 +68,8 @@ import {firebase}from '../firebase/firebase';
     logOut,
     resetPassword,
     updateEmail,
-    updatePassword
+    updatePassword,
+    updateUserName
    };
 
 

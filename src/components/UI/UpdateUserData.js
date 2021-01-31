@@ -19,9 +19,10 @@ const UpdateUserData = () => {
     email,
    photoURL
  } = useContext(UserContext);
+ //delte after checke all work out
+const currentUser = firebase.auth().currentUser;
 
- //current user
- const currentUser = firebase.auth().currentUser;
+const {updateEmail, user} = useContext(UserContext)
 
 
 //update name and url function
@@ -108,23 +109,38 @@ if(newEmail && newName && image && url) {
 };
 
 
+//update email funcion in order to see if this works
+
+const updateEmial2 = async (e) => {
+  e.preventDefault();
+
+  //tengo user and update email function
+
+  if(newEmail !== user.email ) {
+    await updateEmail(newEmail)
+         .then(() => {
+          history.push("/dashboard")
+        })
+  }
+};
+
   return(
     <div className="updateContainer">
     <div className="formWrap">
     <div className="formContent">
     {error && <p>Something went wrong {error}</p>}
-      <form  className="formForm" onSubmit={ () => updateData(newName, url)}>
+      <form  className="formForm" onSubmit={updateEmial2}>
         <h2 className="updateHeader">Update your profile</h2>
         <label  className="formLabel" required>{displayName}</label>
         <input type="text"
         placeholder="new user name"
         className="formInput"
-        required
+
         onChange={(e) => setNwName(e.target.value)}
         value={newName}
         />
         <label className="formLabel">{email}</label>
-        {/*
+
         <input type="email"
         className="formInput"
         placeholder=" new email"
@@ -132,9 +148,9 @@ if(newEmail && newName && image && url) {
         onChange={(e) => setNwEmail(e.target.value)}
         value={newEmail}
         />
-      */}
+
         <label className="formLabel">Select and Image</label>
-        <input type="file" className="formInput" required onChange={handleChange}/>
+        <input type="file" className="formInput"  onChange={handleChange}/>
         <button type="submit" style={{marginTop: '-50px'}}></button>
       </form>
 

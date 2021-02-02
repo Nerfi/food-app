@@ -42,3 +42,26 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+import React, { useContext } from "react";
+
+import { Redirect, Route } from "react-router-dom";
+
+import { AuthenticationContext } from "../../context/AuthenticationContext";
+
+const ProtectedRoute = ({ component: Component, path, exact }) => {
+  const { user } = useContext(AuthenticationContext);
+
+  return user ? <Route path={path} exact={exact} component={Component} /> : <Redirect to="/login" />;
+};
+
+export default ProtectedRoute;
+
+
+<ProtectedRoute path={ROUTES.DOCUMENTATION} component={Documentation} />
+<Route path={ROUTES.DASHBOARD} component={Dashboard} />

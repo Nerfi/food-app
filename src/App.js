@@ -12,6 +12,8 @@ import Dashboard from './components/userProfile/Dashboard';
 import {UserAuth} from './AuthContext/UserContext';
 import UpdateUserData from './components/UI/UpdateUserData';
 import ForgotPassword from './components/userProfile/ForgotPassword';
+//protected routes
+import ProtectedRoutes from './Auth/ProtectedRoutes';
 
 function App() {
   return (
@@ -28,9 +30,9 @@ function App() {
          <Route path="/random" component={RandomMeal}/>
          <Route path="/login" component={Login}/>
          <Route path="/signup" component={Signup}/>
-         <Route path="/forgot-password" component={ForgotPassword}/>
-         <Route path="/dashboard" component={Dashboard}/>
-         <Route path="/updateUserData" component={UpdateUserData}/>
+         <ProtectedRoutes path={"/forgot-password"} component={ForgotPassword} />
+         <ProtectedRoutes path={"/dashboard"} component={Dashboard} />
+         <ProtectedRoutes path={"/update-user-data"} component={UpdateUserData} />
          <Route exact  path="/" component={Home} />
          </Switch>
          </UserAuth>
@@ -44,24 +46,3 @@ function App() {
 export default App;
 
 
-
-
-
-
-import React, { useContext } from "react";
-
-import { Redirect, Route } from "react-router-dom";
-
-import { AuthenticationContext } from "../../context/AuthenticationContext";
-
-const ProtectedRoute = ({ component: Component, path, exact }) => {
-  const { user } = useContext(AuthenticationContext);
-
-  return user ? <Route path={path} exact={exact} component={Component} /> : <Redirect to="/login" />;
-};
-
-export default ProtectedRoute;
-
-
-<ProtectedRoute path={ROUTES.DOCUMENTATION} component={Documentation} />
-<Route path={ROUTES.DASHBOARD} component={Dashboard} />

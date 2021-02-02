@@ -42,7 +42,7 @@ function Login () {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </Form.Group>
-            <Button disabled={!user} className="w-100" type="submit">
+            <Button disabled={!email || !password} className="w-100" type="submit">
               Log In
             </Button>
           </Form>

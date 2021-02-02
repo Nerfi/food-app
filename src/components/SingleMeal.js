@@ -1,5 +1,5 @@
 import React, {useState,useEffect, useContext} from 'react';
-import {useRouteMatch} from 'react-router-dom';
+import {useRouteMatch, Redirect, useHistory} from 'react-router-dom';
 import './SingleMeal.css';
 import {apiHelper} from '../API/api';
 import {firebase} from '../firebase/firebase';
@@ -14,6 +14,8 @@ function SingleMeal(props) {
   const [s,setS] = useState({})
   const [loading, setLoading] = useState(false);
   const {user}  = useContext(UserContext);
+
+  const history= useHistory();
 
   let {params} = useRouteMatch();
   //secret key
@@ -37,7 +39,7 @@ function SingleMeal(props) {
 
   },[params.id]);
 
-//working
+//working NEEDS TO BE DONE
 if(loading)return <p style={{marginTop: '50px'}}>loading</p>
 
   //deconstructing the object response
@@ -90,7 +92,12 @@ const addToDb = async (e) => {
 
   e.preventDefault();
 
-  await firebase.firestore()
+if (!user) {
+  history.push("/login");
+}
+
+    try {
+      await firebase.firestore()
     .collection('users')
     .doc(user.uid)
     .collection('saved')
@@ -110,7 +117,14 @@ const addToDb = async (e) => {
     id
     })
     .then(res =>  setS(res))
-    .catch(e => setError(e.message))
+
+
+    } catch(e) {
+      setError(e.message)
+    }
+return user
+
+
 
 }
 
@@ -124,6 +138,7 @@ const addToDb = async (e) => {
         <div className="mealTitle">
          {title}
         </div>
+
         <div onClick={addToDb} >
           <i className=" extraClass fa fa-bookmark"  style={{ width: '120px', marginTop: '37rem'}}></i>
         </div>

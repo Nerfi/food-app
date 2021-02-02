@@ -90,28 +90,5 @@ function Signup () {
   )
 }
 
-   /* <div className="signupContainer" style={{marginTop: '100px'}}>
-    <form onSubmit={handleSubmit} className="formContainer">
-     {error && error}
-     <div className="signupSpan">Sign up! </div>
-     <label className='emailLabel'>Email</label>
-     <div className="input">
-      <input type="email" required name="email"  placeholder="enter email" value={email}  onChange={(e) => setEmail(e.target.value)}/>
-     </div>
-     <label>Password</label>
-     <div className="input">
-     <input type="password" required name="password" placeholder="enter password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-     </div>
-      <label>Repeat Password</label>
-     <div className="input">
-     <input type="password" required name="password" placeholder="enter password" value={RepeatPassword} onChange={(e) => setRepeatPassword(e.target.value)}/>
-     </div>
-     <label>User Name</label>
-     <div className="input">
-     <input type="text" placeholder="choose user name" required onChange={(e) => setName(e.target.value)} value={name}/>
-     </div>
-     <button type="submit" className="btn__signin">Submit</button>
-    </form>
-    </div>*/
 export default Signup;
 

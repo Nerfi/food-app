@@ -28,7 +28,7 @@ function App() {
          <Route path="/random" component={RandomMeal}/>
          <Route path="/login" component={Login}/>
          <Route path="/signup" component={Signup}/>
-         <Route path="/forgotPassword" component={ForgotPassword}/>
+         <Route path="/forgot-password" component={ForgotPassword}/>
          <Route path="/dashboard" component={Dashboard}/>
          <Route path="/updateUserData" component={UpdateUserData}/>
          <Route exact  path="/" component={Home} />

@@ -3,60 +3,60 @@ import { firebase} from '../firebase/firebase';
 import './Login.css';
 import {useHistory, Link} from 'react-router-dom';
 import { UserContext} from '../AuthContext/UserContext';
+import { Form, Button, Card, Alert } from "react-bootstrap"
 
 
 function Login () {
 
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const {login} = useContext(UserContext);
-  const history = useHistory();
+  const {login, user} = useContext(UserContext);
+  const [error, setError] = useState("")
+  const history = useHistory()
 
+  async function handleSubmit(e) {
+    e.preventDefault()
 
+    try {
+      setError("")
+      await login(email, password)
+      history.push("/")
+    } catch {
+      setError("Failed to log in")
+    }
 
-const loginUser = async(e) => {
-  e.preventDefault();
-
-  try {
-    await login(email, password)
-    history.push('/');
-
-  }catch(e){
-    setError(e.message);
   }
 
-}
-
-  return(
-    <div className="loginContainer">
-
-    <form onSubmit={loginUser} className="loginForm">
-    {error && <p>{error}</p>}
-
-      <h2 className="loginH2">Login!</h2>
-      <label>Email</label>
-      <div className="input">
-       <input type="email" name="email" value={email} placeholder="enter email" onChange={(e) => setEmail(e.target.value)}/>
+  return (
+    <div  style={{marginTop: '55px'}}>
+      <Card className="cardComponent">
+        <Card.Body>
+          <h2 className="text-center mb-4">Log In</h2>
+          {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group id="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            </Form.Group>
+            <Form.Group id="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            </Form.Group>
+            <Button disabled={!user} className="w-100" type="submit">
+              Log In
+            </Button>
+          </Form>
+          <div className="w-100 text-center mt-3">
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </div>
+        </Card.Body>
+      </Card>
+      <div className="w-100 text-center mt-2">
+        Need an account? <Link to="/signup">Sign Up</Link>
       </div>
-      <label>Password</label>
-      <div>
-      <input type="password" name="password" value={password} placeholder="enter password" onChange={(e) => setPassword(e.target.value)}/>
-
-      </div>
-      <button type="submit" className="submit">
-        Login
-      </button>
-
-      <div className="alreadyAccount">
-       <p>don't have an account ? <Link to="Signup" >Sign up !</Link> </p>
-
-      </div>
-
-    </form>
-
     </div>
-    )
+  )
 }
 
 export default Login;
+

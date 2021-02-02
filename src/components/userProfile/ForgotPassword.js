@@ -28,7 +28,7 @@ import { Link } from "react-router-dom"
 
   return (
     <div style={{paddingTop: '55px'}}>
-      <Card>
+      <Card style={{ alignItems: 'center'}}>
         <Card.Body>
           <h2 className="text-center mb-4">Password Reset</h2>
           {error && <Alert variant="danger">{error}</Alert>}

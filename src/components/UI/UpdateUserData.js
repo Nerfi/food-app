@@ -27,6 +27,8 @@ const {
 
 
 //const new function in order to update the user data
+//this is not an async function because we are resolving all the promises this component has in one place , Promise.all(promises); check docs for more info
+
 
 const handleUserUpdate = (e) => {
 
@@ -55,7 +57,7 @@ const handleUserUpdate = (e) => {
 
   //resolving all the promises at once
   Promise.all(promises).then(() => {
-    history.push("/dashboard")
+    history.push("/dashboard");
   }).catch(() => {
     setError('Failed to update profile')
     setName('')

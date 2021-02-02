@@ -13,9 +13,8 @@ function SingleMeal(props) {
   const [error, setError] = useState(null);
   const [s,setS] = useState({})
   const [loading, setLoading] = useState(false);
+  const {user}  = useContext(UserContext);
 
-
-  const {uid, displayName}  = useContext(UserContext);
   let {params} = useRouteMatch();
   //secret key
   const API_SECRET = process.env.REACT_APP_FOOD_KEY;
@@ -93,7 +92,7 @@ const addToDb = async (e) => {
 
   await firebase.firestore()
     .collection('users')
-    .doc(uid)
+    .doc(user.uid)
     .collection('saved')
     .add({
     image,
@@ -111,6 +110,7 @@ const addToDb = async (e) => {
     id
     })
     .then(res =>  setS(res))
+    .catch(e => setError(e.message))
 
 }
 

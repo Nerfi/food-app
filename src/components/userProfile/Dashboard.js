@@ -26,7 +26,7 @@ const Dashboard = () => {
 
       let snapshot = await firebase.firestore()
           .collection('users')
-          .doc(uid)
+          .doc(user.uid)
           .collection('saved')
           .get()
 

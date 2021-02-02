@@ -11,6 +11,7 @@ import Dashboard from './components/userProfile/Dashboard';
 //importing the context
 import {UserAuth} from './AuthContext/UserContext';
 import UpdateUserData from './components/UI/UpdateUserData';
+import ForgotPassword from './components/userProfile/ForgotPassword';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
          <Route path="/random" component={RandomMeal}/>
          <Route path="/login" component={Login}/>
          <Route path="/signup" component={Signup}/>
+         <Route path="/forgotPassword" component={ForgotPassword}/>
          <Route path="/dashboard" component={Dashboard}/>
          <Route path="/updateUserData" component={UpdateUserData}/>
          <Route exact  path="/" component={Home} />

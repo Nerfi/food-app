@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import { createContext } from "react";
-import {firebase}from '../firebase/firebase';
+import {firebase, storage}from '../firebase/firebase';
 
   // 1- creating the context Hook
  const UserContext = createContext();
@@ -45,11 +45,29 @@ import {firebase}from '../firebase/firebase';
     return user.updatePassword(password)
   }
 
-  const updateUserName = (name) => {
-    //this method takes in an object with two properties, displayName, and photoUrl
-    return user.updateProfile({displayName: name})
+  const updateUserName = (name, image) => {
+    //this method takes in an object with two properties,
+    // displayName, and photoUrl
+    return user.updateProfile({displayName: name, photoUrl: image})
   }
 
+  //uploading img, not working
+/*  const setUserProfilePhoto = (image) => {
+    //starting the upload process and also creating the path /images in firestore
+   const uploadTask = storage.ref(`/images/${image.name}`).put(image);
+   //uploading the image
+   uploadTask.on('state_changed', () => {
+    storage
+      .ref("images")
+      .child(image.name)
+      .getDownloadURL()
+
+   }, (error) => {
+    return error;
+  });
+
+  };
+*/
 
 
    useEffect(() => {
@@ -71,6 +89,7 @@ import {firebase}from '../firebase/firebase';
     updateEmail,
     updatePassword,
     updateUserName
+   /* setUserProfilePhoto*/
    };
 
 

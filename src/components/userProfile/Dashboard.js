@@ -51,7 +51,7 @@ const Dashboard = () => {
     {error && <p>something went wrong...{error}</p>}
       <div className="userData">
 
-        <img src={photoURL ? photoURL : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.TWY19cEEgmGPM4BFBBUcfQHaIZ%26pid%3DApi&f=1'}
+        <img src={photoURL ? photoURL : ''}
         alt="userProfile"
         style={{ borderRadius: '70%', height: '50vh'}}/>
 
@@ -61,7 +61,7 @@ const Dashboard = () => {
        </div>
        <div className="changeDataBtn">
 
-       <i class="fa fa-edit" style={{fontSize: '28px'}} onClick={() => history.push("/updateUserData")}></i>
+       <i class="fa fa-edit" style={{fontSize: '28px'}} onClick={() => history.push("/update-user-data")}></i>
        <p>update your profile</p>
        </div>
       </div>

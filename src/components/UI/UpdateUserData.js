@@ -13,6 +13,10 @@ const [password, setPassword] = useState('');
 const [repeatPassword, setRepeatPassword] = useState('');
 const [error, setError] = useState(null);
 const [name, setName] = useState('');
+//img upload state
+const [selcectedPhoto, setSelectedPhoto] = useState('');
+
+
 const history = useHistory();
 
 //this are the new values that aI will use from now on.
@@ -21,6 +25,7 @@ const {
   user,
   updatePassword,
  updateUserName
+ /*setUserProfilePhoto*/
 } = useContext(UserContext);
 
 
@@ -28,11 +33,10 @@ const {
 
 //const new function in order to update the user data
 //this is not an async function because we are resolving all the promises this component has in one place , Promise.all(promises); check docs for more info
-
-
 const handleUserUpdate = (e) => {
 
   e.preventDefault();
+
 
   if(password !== repeatPassword) {
 
@@ -43,6 +47,7 @@ const handleUserUpdate = (e) => {
 
   //creating promises array in order to run all Promises at once
   const promises = [];
+
 
   if(email !== user.email) {
     promises.push(updateEmail(email))
@@ -55,9 +60,18 @@ const handleUserUpdate = (e) => {
     promises.push(updateUserName(name))
   }
 
+  if(selcectedPhoto) {
+    promises.push(onFileChange(selcectedPhoto))
+  }
+
+  if (selcectedPhoto) {
+    promises.push(setUserProfilePhoto(selcectedPhoto))
+  }
+
   //resolving all the promises at once
   Promise.all(promises).then(() => {
     history.push("/dashboard");
+
   }).catch(() => {
     setError('Failed to update profile')
     setName('')
@@ -67,6 +81,15 @@ const handleUserUpdate = (e) => {
 
 };
 
+const onFileChange = (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(file.name);
+    fileRef.put(file);
+    setSelectedPhoto( fileRef.getDownloadURL());
+};
+
+
   return(
      <>
       <Card>
@@ -74,7 +97,18 @@ const handleUserUpdate = (e) => {
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleUserUpdate}>
-            <Form.Group id="name">
+
+            <Form.Group id="img">
+              <Form.Label>Select profile picture</Form.Label>
+              <Form.Control
+                type="file"
+                onChange={onFileChange}
+                required
+              />
+
+            </Form.Group>
+
+             <Form.Group id="name">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"

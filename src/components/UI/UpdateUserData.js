@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useRef} from 'react';
 import './UpdateUserData.css';
 import { UserContext} from '../../AuthContext/UserContext';
 import  {storage, firebase} from '../../firebase/firebase';
@@ -15,6 +15,10 @@ const [error, setError] = useState(null);
 const [name, setName] = useState('');
 //img upload state
 const [selcectedPhoto, setSelectedPhoto] = useState('');
+//creating the ref
+const imgRef = useRef();
+
+
 
 
 const history = useHistory();
@@ -56,24 +60,24 @@ const handleUserUpdate = (e) => {
   if(password ) {
     promises.push(updatePassword(password))
   }
-  if(name !== user.displayName) {
-    promises.push(updateUserName(name))
+  if(name !== user.displayName && selcectedPhoto) {
+    promises.push(updateUserName(name, selcectedPhoto))
   }
 
   if(selcectedPhoto) {
     promises.push(onFileChange(selcectedPhoto))
   }
 
-  if (selcectedPhoto) {
+  /*if (selcectedPhoto) {
     promises.push(setUserProfilePhoto(selcectedPhoto))
-  }
+  }*/
 
   //resolving all the promises at once
   Promise.all(promises).then(() => {
     history.push("/dashboard");
 
-  }).catch(() => {
-    setError('Failed to update profile')
+  }).catch((error) => {
+    setError('Failed to update profile' + ' ' + error.message)
     setName('')
     setPassword('');
     setRepeatPassword('');
@@ -81,19 +85,48 @@ const handleUserUpdate = (e) => {
 
 };
 
-const onFileChange = (e) => {
-    const file = e.target.files[0];
-    const storageRef = storage.ref();
-    const fileRef = storageRef.child(file.name);
-    fileRef.put(file);
-    setSelectedPhoto( fileRef.getDownloadURL());
-};
+
+
+//new onfile change function
+const onFileChange = async (e) => {
+  //not working this fucntion this is the error I get
+
+  //Cannot read property 'files' of undefined
+ // const file = e.target.files[0];
+
+  //img ref
+  //error message using ref : TOKEN EXPIRED
+  imgRef.current = e.target.files[0];
+  console.log(imgRef, 'new img ref')
+  //creating a root reference
+  const storageRef = storage.ref();
+
+  const uploadTask = storageRef.child('images/' + imgRef.name).put(imgRef);
+
+  await  uploadTask.on('state_changed',
+    (snapshot) => {
+      // I do not want the progress
+    },
+    (error) => {
+      setError(error.message)
+    },
+    () => {
+      //upload completed successfully, now we can get the download URL
+      uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+         setSelectedPhoto(url)
+        //console.log('file' +' ' + url) working
+      })
+    }
+  )
+
+}
 
 
   return(
      <>
       <Card>
         <Card.Body>
+
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleUserUpdate}>

@@ -1,6 +1,6 @@
 import React,{useState,useContext} from  'react';
 import { UserContext} from '../../AuthContext/UserContext';
-import {Navbar} from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 import {firebase} from '../../firebase/firebase';
 import {useHistory} from 'react-router-dom';
 
@@ -23,8 +23,8 @@ function NavbarFood() {
   }
 
   return(
-    <Navbar style={{zIndex: 1 }} fixed="top" bg="light">
-    <Navbar.Brand href="/"><span style={{color: '#ff0157'}}>F</span>oodied</Navbar.Brand>
+   <Navbar style={{zIndex: 1 }} fixed="top" bg="light">
+    <Navbar.Brand href="/"><span style={{color: '#ff0157'}}>F</span>oodied </Navbar.Brand>
     <Navbar.Toggle />
     <Navbar.Collapse className="justify-content-end">
       <Navbar.Text >
@@ -50,6 +50,7 @@ function NavbarFood() {
 
   </Navbar.Collapse>
 </Navbar>
+
   );
 };
 

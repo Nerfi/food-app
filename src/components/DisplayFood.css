@@ -20,18 +20,18 @@
 /*media query */
 @media  (max-width:541px) {
    .food__cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-left: 40px;
+    display: flex;
+    justify-content: center;
   }
 }
 
 /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-@media  (max-width:481px) {
+@media  (max-width:480px) {
    .food__cards {
     display: grid;
     grid-template-columns: 1fr;
     margin-left: 40px;
+
   }
 }
 

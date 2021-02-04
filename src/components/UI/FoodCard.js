@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import './FoodCard.css'
 
 function FoodCard(props) {
 
@@ -12,7 +13,7 @@ function FoodCard(props) {
   } = props;
 
   return(
-    <Card  style={{ width: '18rem', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
+    <Card className="cardComponent">
       <Card.Img variant="top" src={image } />
       <Card.Body>
 

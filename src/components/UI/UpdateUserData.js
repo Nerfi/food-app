@@ -16,7 +16,10 @@ const [name, setName] = useState('');
 //img upload state
 const [selcectedPhoto, setSelectedPhoto] = useState('');
 //creating the ref
-const imgRef = useRef();
+let imgRef = useRef();
+
+
+console.log( typeof selcectedPhoto, 'selcectedPhoto') //string
 
 
 
@@ -60,17 +63,14 @@ const handleUserUpdate = (e) => {
   if(password ) {
     promises.push(updatePassword(password))
   }
-  if(name !== user.displayName && selcectedPhoto) {
-    promises.push(updateUserName(name, selcectedPhoto))
+  if(name !== user.displayName ) {
+    promises.push(updateUserName(name))
   }
-
+/*
   if(selcectedPhoto) {
     promises.push(onFileChange(selcectedPhoto))
   }
-
-  /*if (selcectedPhoto) {
-    promises.push(setUserProfilePhoto(selcectedPhoto))
-  }*/
+*/
 
   //resolving all the promises at once
   Promise.all(promises).then(() => {
@@ -87,38 +87,21 @@ const handleUserUpdate = (e) => {
 
 
 
-//new onfile change function
 const onFileChange = async (e) => {
-  //not working this fucntion this is the error I get
+ //imgRef.current = e.target.files[0];
+ e.preventDefault();
+ imgRef = e.target.files[0];
 
-  //Cannot read property 'files' of undefined
- // const file = e.target.files[0];
-
-  //img ref
-  //error message using ref : TOKEN EXPIRED
-  imgRef.current = e.target.files[0];
-  console.log(imgRef, 'new img ref')
-  //creating a root reference
-  const storageRef = storage.ref();
-
-  const uploadTask = storageRef.child('images/' + imgRef.name).put(imgRef);
-
-  await  uploadTask.on('state_changed',
-    (snapshot) => {
-      // I do not want the progress
-    },
-    (error) => {
-      setError(error.message)
-    },
-    () => {
-      //upload completed successfully, now we can get the download URL
-      uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-         setSelectedPhoto(url)
-        //console.log('file' +' ' + url) working
-      })
-    }
-  )
-
+ console.log(e.target.files, 'files target');
+//const uploadTask = storage.ref().child('images/' + imgRef.name).put(imgRef)
+ const uploadTask  = storage.ref().child('images/' + 'test.png').put(imgRef);
+ await uploadTask
+ .then((snapshot) => snapshot.ref.getDownloadURL())
+ .then((url) => {
+    console.log(url, 'here is the url');
+    setSelectedPhoto(url);
+    updateUserName({ photoURL: url})
+  });
 }
 
 

@@ -144,15 +144,16 @@ return user
         </div>
 
       </div>
-    <div className="descriptionRecipe">
-     {summary && replaceBtag(summary)}
-     <div className="originalUrl">
-       <span>You can find the origin recipe here:</span>
-       <p><a href={sourceUrl} target="_blank">See recipe</a></p>
-     </div>
 
-    </div>
-  <div className="displayStepsAndIngredients">
+        <div className="descriptionRecipe">
+         {summary && replaceBtag(summary)}
+         <div className="originalUrl">
+           <span>You can find the origin recipe here:</span>
+           <p><a href={sourceUrl} target="_blank">See recipe</a></p>
+         </div>
+
+        </div>
+    <div className="displayStepsAndIngredients">
       <div className="ingredientsMeal">
        <h2>Ingrediensts</h2>
        {stepsAndMeasures(extendedIngredients)}

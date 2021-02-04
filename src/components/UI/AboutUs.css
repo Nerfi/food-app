@@ -48,10 +48,16 @@
   }
 
   .imgRight  {
-      width: 60vh;
+      width: 45vh;
     justify-content: center;
   }
 
 }
 
 
+@media (max-width: 480px) {
+  .imgRight {
+    width: 25vh;
+    justify-content: center;
+  }
+}

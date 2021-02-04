@@ -89,7 +89,7 @@ const handleUserUpdate = (e) => {
 
 const onFileChange = async (e) => {
  //imgRef.current = e.target.files[0];
- e.preventDefault();
+ //e.preventDefault();
  imgRef = e.target.files[0];
 
  console.log(e.target.files, 'files target');

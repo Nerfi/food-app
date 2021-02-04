@@ -51,7 +51,7 @@ const Dashboard = () => {
     {error && <p>something went wrong...{error}</p>}
       <div className="userData">
 
-        <img src={photoURL ? photoURL : ''}
+        <img src={user ? user.photoURL : ''}
         alt="userProfile"
         style={{ borderRadius: '70%', height: '50vh'}}/>
 

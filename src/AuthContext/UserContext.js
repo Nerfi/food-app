@@ -48,7 +48,7 @@ import {firebase, storage}from '../firebase/firebase';
   const updateUserName = (name, image) => {
     //this method takes in an object with two properties,
     // displayName, and photoUrl
-    return user.updateProfile({displayName: name, photoUrl: image})
+    return user.updateProfile({displayName: name, photoURL: image})
   }
 
 

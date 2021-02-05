@@ -55,7 +55,6 @@ function Signup () {
         firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
           email: email,
           name: name
-          /*avatar: selcectedPhoto */
         });
 
 
@@ -69,22 +68,13 @@ function Signup () {
 
     //testing code
     const onFileChange = async (e) => {
- //imgRef.current = e.target.files[0];
-    imgRef = e.target.files[0];
 
-    console.log(e.target.files, 'files target');
-    //const uploadTask = storage.ref().child('images/' + imgRef.name).put(imgRef)
+    imgRef = e.target.files[0];
     const uploadTask  = storage.ref().child('images/' +  imgRef.name).put(imgRef);
     await uploadTask
     .then((snapshot) => snapshot.ref.getDownloadURL())
     .then((url) => {
-    //working
-      console.log(url, 'here is the url');
-      setSelectedPhoto(url);
-  //make sure to undelete this in case it's working
-    //updateUserName({display_name: name ,photoURL: url})
-    //by deleting this line I get rid of the error, 'invalid argument'
-    //but the image doesnt get attach to user profile
+    setSelectedPhoto(url);
   });
 }
 

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef} from 'react';
+import React, {useState, useContext} from 'react';
 import './UpdateUserData.css';
 import { UserContext} from '../../AuthContext/UserContext';
 import  {storage, firebase} from '../../firebase/firebase';
@@ -13,28 +13,14 @@ const [password, setPassword] = useState('');
 const [repeatPassword, setRepeatPassword] = useState('');
 const [error, setError] = useState(null);
 const [name, setName] = useState('');
-//img upload state
-const [selcectedPhoto, setSelectedPhoto] = useState('');
-//creating the ref
-let imgRef = useRef();
-
-
-console.log( typeof selcectedPhoto, 'selcectedPhoto') //string
-console.log(selcectedPhoto, 'state') //working , given back and url string
-
-
 const history = useHistory();
 
-//this are the new values that aI will use from now on.
 const {
   updateEmail,
   user,
   updatePassword,
  updateUserName
- /*setUserProfilePhoto*/
 } = useContext(UserContext);
-
-
 
 
 //const new function in order to update the user data
@@ -62,14 +48,10 @@ const handleUserUpdate = (e) => {
   if(password ) {
     promises.push(updatePassword(password))
   }
-  if(name !== user.displayName && selcectedPhoto ) {
-    promises.push(updateUserName({displayName:name, photoUrl:selcectedPhoto}))
+  if(name !== user.displayName ) {
+    promises.push(updateUserName(name))
   }
-/*
-  if(selcectedPhoto) {
-    promises.push(onFileChange(selcectedPhoto))
-  }
-  */
+
 
   //resolving all the promises at once
   Promise.all(promises).then(() => {
@@ -85,28 +67,6 @@ const handleUserUpdate = (e) => {
 };
 
 
-
-const onFileChange = async (e) => {
- //imgRef.current = e.target.files[0];
- imgRef = e.target.files[0];
-
- console.log(e.target.files, 'files target');
-//const uploadTask = storage.ref().child('images/' + imgRef.name).put(imgRef)
- const uploadTask  = storage.ref().child('images/' +  imgRef.name).put(imgRef);
- await uploadTask
- .then((snapshot) => snapshot.ref.getDownloadURL())
- .then((url) => {
-  //working
-    console.log(url, 'here is the url');
-    setSelectedPhoto(url);
-    //make sure to undelete this in case it's working
-    //updateUserName({display_name: name ,photoURL: url})
-    //by deleting this line I get rid of the error, 'invalid argument'
-    //but the image doesnt get attach to user profile
-  });
-}
-
-
   return(
      <>
       <Card>
@@ -115,16 +75,6 @@ const onFileChange = async (e) => {
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleUserUpdate}>
-
-            <Form.Group id="img">
-              <Form.Label>Select profile picture</Form.Label>
-              <Form.Control
-                type="file"
-                onChange={onFileChange}
-                required
-              />
-
-            </Form.Group>
 
              <Form.Group id="name">
               <Form.Label>Name</Form.Label>

@@ -15,3 +15,14 @@
 }
 
 
+@media (max-width: 480px) {
+
+  .savedMealsCard {
+    align-items: center;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+

@@ -130,18 +130,19 @@ return user
 
 
   return (
-    <div>
+    <div className="container">
     {error && error}
-      <div className="background" style={{backgroundImage: `url(${image})`}}>
+      <div className="background" style={{backgroundImage: `url(${image})`, borderStyle: 'solid'}}>
        <div className="saveIcon">
        </div>
         <div className="mealTitle">
          {title}
         </div>
 
-        <div onClick={addToDb} >
+        <div className="savedBtn"  onClick={addToDb} >
           <i className=" extraClass fa fa-bookmark"  style={{ width: '120px', marginTop: '37rem'}}></i>
         </div>
+
 
       </div>
 

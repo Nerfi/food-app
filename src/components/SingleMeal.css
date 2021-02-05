@@ -1,11 +1,11 @@
 .background {
   height: 100vh;
+   position: relative;
    width: 100%;
    background-size: cover;
    display: flex;
    justify-content: center;
    align-items: center;
-   position: relative;
 }
 
 .descriptionRecipe {
@@ -21,8 +21,8 @@
 
 /* ICon*/
 .extraClass{
-     font-size:50px;
-     opacity: 0.5;
+     font-size:55px;
+     opacity: 0.6;
      transition: opacity 500ms ease;
 }
 
@@ -32,7 +32,7 @@
 
 .mealTitle {
   font-weight:600;
-  font-size:72px;
+  font-size:65px;
   color: #fff;
   display: inline-block;
   text-align: center;
@@ -79,4 +79,29 @@
   padding: 5px;
 }
 
+@media (max-width: 480px) {
+
+  .savedBtn {
+    position: relative;
+    top: 105px;
+    height: 50px;
+    right: 50px;
+  }
+  .mealTitle {
+    font-size: 45px;
+    justify-content: center;
+    position: relative;
+    left: 35px;
+  }
+
+
+.extraClass{
+     font-size:65px;
+     opacity: 0.8;
+     transition: opacity 500ms ease;
+     position: relative;
+     top: -300px;
+ }
+
+ }
 

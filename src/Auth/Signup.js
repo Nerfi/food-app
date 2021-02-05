@@ -18,10 +18,6 @@ function Signup () {
 
   //testing state
   const [selcectedPhoto, setSelectedPhoto] = useState(null);
-
-  console.log(typeof selcectedPhoto)
-  console.log(selcectedPhoto, 'state photo')
-
   //ref
   let imgRef = useRef();
 
@@ -66,7 +62,7 @@ function Signup () {
 
     };
 
-    //testing code
+
     const onFileChange = async (e) => {
 
     imgRef = e.target.files[0];

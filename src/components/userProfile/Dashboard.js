@@ -13,8 +13,6 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const {uid, email, displayName, photoURL} = useContext(UserContext);
   const {user} = useContext(UserContext);
-
-
   //using history object
   const history = useHistory();
 
@@ -41,9 +39,6 @@ const Dashboard = () => {
 
   },[])
 
-console.log(user.email, user.name, 'user ')
-console.log(user.displayName)
-console.log(user.photoURL, 'photo')
   return(
     <div className="dashboard">
     {error && <p>something went wrong...{error}</p>}
@@ -51,7 +46,7 @@ console.log(user.photoURL, 'photo')
 
         <img src={user ? user.photoURL : ''}
         alt="userProfile"
-        style={{ borderRadius: '70%', height: '50vh'}}/>
+        style={{ borderRadius: '50%', height: '20vh'}}/>
 
        <div className="userInfo">
        <h3>{ user?.displayName }</h3>

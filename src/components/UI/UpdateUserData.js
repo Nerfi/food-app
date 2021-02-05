@@ -20,8 +20,7 @@ let imgRef = useRef();
 
 
 console.log( typeof selcectedPhoto, 'selcectedPhoto') //string
-
-
+console.log(selcectedPhoto, 'state') //working , given back and url string
 
 
 const history = useHistory();
@@ -63,14 +62,14 @@ const handleUserUpdate = (e) => {
   if(password ) {
     promises.push(updatePassword(password))
   }
-  if(name !== user.displayName ) {
-    promises.push(updateUserName(name))
+  if(name !== user.displayName && selcectedPhoto ) {
+    promises.push(updateUserName({displayName:name, photoUrl:selcectedPhoto}))
   }
 /*
   if(selcectedPhoto) {
     promises.push(onFileChange(selcectedPhoto))
   }
-*/
+  */
 
   //resolving all the promises at once
   Promise.all(promises).then(() => {
@@ -89,18 +88,21 @@ const handleUserUpdate = (e) => {
 
 const onFileChange = async (e) => {
  //imgRef.current = e.target.files[0];
- //e.preventDefault();
  imgRef = e.target.files[0];
 
  console.log(e.target.files, 'files target');
 //const uploadTask = storage.ref().child('images/' + imgRef.name).put(imgRef)
- const uploadTask  = storage.ref().child('images/' + 'test.png').put(imgRef);
+ const uploadTask  = storage.ref().child('images/' +  imgRef.name).put(imgRef);
  await uploadTask
  .then((snapshot) => snapshot.ref.getDownloadURL())
  .then((url) => {
+  //working
     console.log(url, 'here is the url');
     setSelectedPhoto(url);
-    updateUserName({ photoURL: url})
+    //make sure to undelete this in case it's working
+    //updateUserName({display_name: name ,photoURL: url})
+    //by deleting this line I get rid of the error, 'invalid argument'
+    //but the image doesnt get attach to user profile
   });
 }
 

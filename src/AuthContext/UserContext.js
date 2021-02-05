@@ -51,23 +51,6 @@ import {firebase, storage}from '../firebase/firebase';
     return user.updateProfile({displayName: name, photoUrl: image})
   }
 
-  //uploading img, not working
-/*  const setUserProfilePhoto = (image) => {
-    //starting the upload process and also creating the path /images in firestore
-   const uploadTask = storage.ref(`/images/${image.name}`).put(image);
-   //uploading the image
-   uploadTask.on('state_changed', () => {
-    storage
-      .ref("images")
-      .child(image.name)
-      .getDownloadURL()
-
-   }, (error) => {
-    return error;
-  });
-
-  };
-*/
 
 
    useEffect(() => {

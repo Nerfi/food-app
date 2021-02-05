@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import {firebase} from '../firebase/firebase';
+import React, {useState, useContext, useRef} from 'react';
+import {firebase, storage} from '../firebase/firebase';
 import './Signup.css';
 import { useHistory, Link } from "react-router-dom";
 import { Form, Button, Card, Alert } from "react-bootstrap"
@@ -16,9 +16,22 @@ function Signup () {
   const {signUp} = useContext(UserContext);
   const history = useHistory();
 
+  //testing state
+  const [selcectedPhoto, setSelectedPhoto] = useState(null);
+
+  console.log(typeof selcectedPhoto)
+  console.log(selcectedPhoto, 'state photo')
+
+  //ref
+  let imgRef = useRef();
+
     const handleSubmit = async (e) => {
 
       e.preventDefault();
+
+      if (!name || !selcectedPhoto) {
+        return;
+      }
 
       //checking that the two passwrods are the same
       if(password !== repeatPassword) {
@@ -31,7 +44,8 @@ function Signup () {
           if(res) {
 
               res.user.updateProfile({
-                displayName: name
+                displayName: name,
+                photoURL: selcectedPhoto
               })
 
             history.push('/');
@@ -41,6 +55,7 @@ function Signup () {
         firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
           email: email,
           name: name
+          /*avatar: selcectedPhoto */
         });
 
 
@@ -52,6 +67,27 @@ function Signup () {
 
     };
 
+    //testing code
+    const onFileChange = async (e) => {
+ //imgRef.current = e.target.files[0];
+    imgRef = e.target.files[0];
+
+    console.log(e.target.files, 'files target');
+    //const uploadTask = storage.ref().child('images/' + imgRef.name).put(imgRef)
+    const uploadTask  = storage.ref().child('images/' +  imgRef.name).put(imgRef);
+    await uploadTask
+    .then((snapshot) => snapshot.ref.getDownloadURL())
+    .then((url) => {
+    //working
+      console.log(url, 'here is the url');
+      setSelectedPhoto(url);
+  //make sure to undelete this in case it's working
+    //updateUserName({display_name: name ,photoURL: url})
+    //by deleting this line I get rid of the error, 'invalid argument'
+    //but the image doesnt get attach to user profile
+  });
+}
+
 
   return(
 
@@ -61,7 +97,19 @@ function Signup () {
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+
+            <Form.Group id="img">
+              <Form.Label>Select profile picture</Form.Label>
+              <Form.Control
+                type="file"
+                onChange={onFileChange}
+                required
+              />
+
+            </Form.Group>
+
           <Form.Group id="name">
+
               <Form.Label>Name</Form.Label>
               <Form.Control type="text" value={name} required onChange={(e) => setName(e.target.value)} />
             </Form.Group>

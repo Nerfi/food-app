@@ -41,11 +41,9 @@ const Dashboard = () => {
 
   },[])
 
-  //temporary const
-  const image = null;
-
-
-
+console.log(user.email, user.name, 'user ')
+console.log(user.displayName)
+console.log(user.photoURL, 'photo')
   return(
     <div className="dashboard">
     {error && <p>something went wrong...{error}</p>}

@@ -97,7 +97,7 @@ if (!user) {
 }
 
     try {
-      await firebase.firestore()
+    await firebase.firestore()
     .collection('users')
     .doc(user.uid)
     .collection('saved')
@@ -123,8 +123,6 @@ if (!user) {
       setError(e.message)
     }
 return user
-
-
 
 }
 

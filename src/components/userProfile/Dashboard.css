@@ -4,16 +4,17 @@
 }
 
 
+
 .savedMealsCard {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  grid-gap: 40px;
-  grid-auto-flow: column;
-  margin-top: 50px;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  margin-left: 10%;
+  padding: 25px;
+  width: 80%;
+  padding-top: 80px;
 
 }
-
 
 @media (max-width: 480px) {
 

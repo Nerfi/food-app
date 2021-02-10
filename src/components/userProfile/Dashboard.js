@@ -34,7 +34,7 @@ const Dashboard = () => {
 
    };
 
-  meals();
+    meals();
 
 
   },[])
@@ -60,7 +60,10 @@ const Dashboard = () => {
       </div>
 
       <div className="savedMeals">
-      <h2>My saved meals </h2>
+
+      <div className="titleDasboard">
+       <h2>My saved meals </h2>
+      </div>
 
         <div className="savedMealsCard">
         { saved.map(meal => <FoodCard {...meal} key={meal.id} />)}

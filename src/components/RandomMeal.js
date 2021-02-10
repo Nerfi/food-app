@@ -19,11 +19,13 @@ function RandomMeal() {
 const select = (eventKey) => {
   //checking if we have already the values on the state array
   setTags((tags) => {
+
     if (tags.includes(eventKey)) {
       return tags;
      }
 
      return [...tags, eventKey];
+
   });
 };
 
@@ -37,8 +39,7 @@ const select = (eventKey) => {
       await apiHelper(url)
         .then(res => setRandom({res: res.recipes}))
         .catch(e => setError(e.message))
-  };
-
+ };
 
 return (
     <div className='content'>
@@ -51,7 +52,11 @@ return (
      </div>
 
      <div className="displayMeals">
-      {random?.res?.map(meal => <FoodCard {...meal} key={meal.id}/> )}
+      {
+        random?.res?.length > 0 ?
+        random?.res?.map(meal => <FoodCard {...meal} key={meal.id}/> ) :
+          <p>nothing</p>
+      }
     </div>
 
   </div>

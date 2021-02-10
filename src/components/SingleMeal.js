@@ -4,6 +4,7 @@ import './SingleMeal.css';
 import {apiHelper} from '../API/api';
 import {firebase} from '../firebase/firebase';
 import { UserContext} from '../AuthContext/UserContext';
+import Spinner from './UI/Spinner';
 
 
 function SingleMeal(props) {
@@ -40,7 +41,7 @@ function SingleMeal(props) {
   },[params.id]);
 
 //working NEEDS TO BE DONE
-if(loading)return <p style={{marginTop: '50px'}}>loading</p>
+if(loading)return <Spinner/>
 
   //deconstructing the object response
   const {

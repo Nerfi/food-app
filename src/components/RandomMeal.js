@@ -1,19 +1,18 @@
-import  React,{useState} from 'react';
+import  React,{useState, useEffect} from 'react';
 import './RandomMeal.css';
 import FoodCard from './UI/FoodCard';
 import TagsSelection from './UI/TagsSelection';
 import {apiHelper} from '../API/api';
+import Spinner from './UI/Spinner';
+
 
 function RandomMeal() {
 
   const [random, setRandom] = useState([]);
-  //there is no error
   const [error, setError] = useState(null);
-  //setting tags state
   const [tags, setTags] = useState([]);
-  //loading state
   const [loading, setLoading] = useState(false);
-  //secret key
+
   const API_SECRET = process.env.REACT_APP_FOOD_KEY;
 
 const select = (eventKey) => {
@@ -29,17 +28,23 @@ const select = (eventKey) => {
   });
 };
 
-  //make API call when the user has selected the tags and click the button
+
+ //make API call when the user has selected the tags and click the button
   const fetchRandom = async () => {
 
       //joining the user tags
+      setLoading(true)
       const selectedTags = tags.join();
       const url = `https://api.spoonacular.com/recipes/random?number=6&tags=${selectedTags}&apiKey=${API_SECRET}`;
       //making the request
       await apiHelper(url)
         .then(res => setRandom({res: res.recipes}))
         .catch(e => setError(e.message))
+        setLoading(false)
  };
+
+if (loading) return  <Spinner/>
+
 
 return (
     <div className='content'>
@@ -52,12 +57,11 @@ return (
      </div>
 
      <div className="displayMeals">
-      {
-        random?.res?.length > 0 ?
-        random?.res?.map(meal => <FoodCard {...meal} key={meal.id}/> ) :
-          <p>nothing</p>
-      }
+     {
+      random.res? (random.res.length?  random?.res?.map(meal => <FoodCard {...meal} key={meal.id}/> ) :<p>nothing was return</p>) : null
+    }
     </div>
+
 
   </div>
 )
@@ -65,3 +69,4 @@ return (
 };
 
 export default RandomMeal;
+

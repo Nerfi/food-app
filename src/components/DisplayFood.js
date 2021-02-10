@@ -2,11 +2,13 @@ import React,{useState, useEffect} from 'react';
 import FoodCard from './UI/FoodCard';
 import './DisplayFood.css';
 import {apiHelper} from '../API/api';
+import Spinner from './UI/Spinner';
 
 function DisplayFoods() {
 
   const [foods , setFoods] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
 
@@ -14,16 +16,18 @@ function DisplayFoods() {
      const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_SECRET}&number=21`;
 
      const getFood = async () => {
+      setLoading(true);
 
        const getFoodsResponse = await apiHelper(url)
         .then(res => setFoods(res.results))
         .catch(e => setError(e.message))
-
+        setLoading(false);
      }
 
     getFood();
 
   },[]);
+  if (loading) return <Spinner/>
 
 
   return(

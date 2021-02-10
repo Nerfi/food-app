@@ -4,6 +4,7 @@ import {firebase} from '../../firebase/firebase';
 import { UserContext} from '../../AuthContext/UserContext';
 import FoodCard from '../UI/FoodCard';
 import {useHistory} from 'react-router-dom';
+import Spinner from '../UI/Spinner';
 
 
 
@@ -11,6 +12,7 @@ const Dashboard = () => {
 
   const [saved, setSaved] = useState([]);
   const [error, setError] = useState(null);
+  const [loading,setLoading] = useState(false);
   const {uid, email, displayName, photoURL} = useContext(UserContext);
   const {user} = useContext(UserContext);
   //using history object
@@ -21,12 +23,14 @@ const Dashboard = () => {
     const meals = async () => {
 
       let retrieveMeals = [];
+      setLoading(true)
 
       let snapshot = await firebase.firestore()
           .collection('users')
           .doc(user.uid)
           .collection('saved')
           .get()
+          setLoading(false);
 
 
       snapshot.forEach(doc => doc.exists ? retrieveMeals.push(doc.data()) : null )
@@ -38,6 +42,7 @@ const Dashboard = () => {
 
 
   },[])
+  if (loading) return <Spinner/>
 
   return(
     <div className="dashboard">

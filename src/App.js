@@ -14,7 +14,8 @@ import UpdateUserData from './components/UI/UpdateUserData';
 import ForgotPassword from './components/userProfile/ForgotPassword';
 //protected routes
 import ProtectedRoutes from './Auth/ProtectedRoutes';
-
+//footer
+import Footer from './components/UI/Footer';
 function App() {
   return (
 
@@ -36,6 +37,7 @@ function App() {
          <Route exact  path="/" component={Home} />
          </Switch>
          </UserAuth>
+         <Footer/>
       </Router>
 
 

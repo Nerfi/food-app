@@ -38,7 +38,7 @@ import { Link } from "react-router-dom"
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" value={email} onChange={(e) => setNewEmail(e.target.value)} required />
             </Form.Group>
-            <Button disabled={!user} className="w-100" type="submit">
+            <Button disabled={!email} className="w-100" type="submit">
               Reset Password
             </Button>
           </Form>

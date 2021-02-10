@@ -14,8 +14,7 @@ import UpdateUserData from './components/UI/UpdateUserData';
 import ForgotPassword from './components/userProfile/ForgotPassword';
 //protected routes
 import ProtectedRoutes from './Auth/ProtectedRoutes';
-//footer
-import Footer from './components/UI/Footer';
+
 function App() {
   return (
 
@@ -31,13 +30,12 @@ function App() {
          <Route path="/random" component={RandomMeal}/>
          <Route path="/login" component={Login}/>
          <Route path="/signup" component={Signup}/>
-         <ProtectedRoutes path={"/forgot-password"} component={ForgotPassword} />
+         <Route path="/forgot-password" component={ForgotPassword}/>
          <ProtectedRoutes path={"/dashboard"} component={Dashboard} />
          <ProtectedRoutes path={"/update-user-data"} component={UpdateUserData} />
          <Route exact  path="/" component={Home} />
          </Switch>
          </UserAuth>
-         <Footer/>
       </Router>
 
 

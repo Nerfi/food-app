@@ -40,7 +40,6 @@ function SingleMeal(props) {
 
   },[params.id]);
 
-//working NEEDS TO BE DONE
 if(loading)return <Spinner/>
 
   //deconstructing the object response
@@ -148,7 +147,7 @@ return user
         <div className="descriptionRecipe">
          {summary && replaceBtag(summary)}
          <div className="originalUrl">
-           <span>You can find the origin recipe here:</span>
+           <strong> <span>You can find the original recipe here:</span> </strong>
            <p><a href={sourceUrl} target="_blank">See recipe</a></p>
          </div>
 
